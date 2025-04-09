@@ -134,19 +134,19 @@ const NotesBody = () => {
   
   // Save Current Notes to Local Storage
 
-  // useEffect(()=>{
-  //   const data = localStorage.getItem("Current-Notes-Saved")
-  //   console.log
-  //   if (data){
-  //     const resource = JSON.parse(data);
-  //     console.log(resource)
-  //     setCurrentNotes(resource)
-  //   }
-  // },[])
+  useEffect(()=>{
+    const data = localStorage.getItem("Current-Notes-Saved")
+    console.log
+    if (data){
+      const resource = JSON.parse(data);
+      console.log(resource)
+      setCurrentNotes(resource)
+    }
+  },[])
 
-  // useEffect(()=>{
-  //   localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
-  // },[currentNotes])
+  useEffect(()=>{
+    localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
+  },[currentNotes])
 
  
 
