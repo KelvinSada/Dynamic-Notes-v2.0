@@ -2,7 +2,7 @@
 const Header = () => {
   return (
     <header className="w-full bg-[#F8F8F8] flex flex-col items-center">
-      <div className="bg-black flex justify-between items-center w-[92%] py-2 ">
+      <div className="flex justify-between items-center w-[92%] py-2 ">
         <p>Toggle</p>
         <img src="dynamic-small.png"
         className=" block w-[35%] md:w-[18%]" alt="Dynamic notes Logo"/>
