@@ -126,7 +126,7 @@ const NotesBody = () => {
       <input type="text" className="w-full text-xl border-none outline-none" placeholder="Title" name="title"></input>
 
       <div className="flex justify-between items-center">
-        <div className="flex items-center gap-[10px]">
+        <div className="flex text-[10px] justify-between  items-center gap-[10px]">
           <p>{CurrentDate}</p>
           <p>{CurrentTime}</p>
         </div>
