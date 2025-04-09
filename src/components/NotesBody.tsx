@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useState,useRef } from "react"
 
 type NotesType = {
@@ -118,7 +118,23 @@ const NotesBody = () => {
   //   }
   // })
   
+  // Save Current Notes to Local Storage
 
+  useEffect(()=>{
+    const data = localStorage.getItem("Current-Notes-Saved")
+    console.log
+    if (data){
+      const resource = JSON.parse(data);
+      console.log(resource)
+      setCurrentNotes(resource)
+    }
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
+  },[currentNotes])
+
+ 
 
   
 
