@@ -25,6 +25,11 @@ const NotesBody = () => {
 
   const totalRef = useRef<number>(0)
   
+
+
+
+  // Making the Dynamic Notes Work
+
   const getContent =  (e:React.ChangeEvent<HTMLTextAreaElement>)=>{
     const values = e.target.value
 
@@ -59,17 +64,73 @@ const NotesBody = () => {
       return null
     }
   }
-  
   const getTotal = (total:number,num:number) =>{
     return total+num;
   }
 
 
+  // Handling the Date snd Time
+  const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+  const getDay = new Date().getDate()
+  const getMonth = new Date().getMonth()
+  // const getFullYear = new Date().getFullYear()
+
+  const getMinute = new Date().getMinutes()
+  let minute:number|string
+  if (getMinute < 10){
+    minute = `0${getMinute}`
+  } else{
+    minute = getMinute
+  }
+
+  const getHour = new Date().getHours()
+
+  let hours:number|string
+  let zone:string
+
+  if (getHour < 12){
+    if (getHour < 10){
+      hours = `0${getHour}`
+    } else{
+      hours = getHour
+    }
+    zone = "AM"
+  } else if (getHour === 12){
+    hours = getHour
+    zone = "PM"
+  } else if (getHour === 24){
+    hours = `00`
+    zone = "AM"
+  } else{
+    hours = (getHour - 12)
+    zone = "PM"
+  }
+
+  const CurrentDate = `${getDay} ${Month[getMonth]}`
+  const CurrentTime = `${hours}:${minute} ${zone}`
+  // setCurrentNotes(prev=>{
+  //   return{
+  //     ...prev,
+  //     date:CurrentDate,
+  //     time:CurrentTime,
+  //   }
+  // })
+  
+
+
+  
+
   return (
-    <div className="container w-[92%] m-auto">
+    <div className="flex flex-col gap-[5px] w-[92%] m-auto">
       <input type="text" className="w-full border-none outline-none" placeholder="Title" name="title"></input>
-      <textarea className="text-lg bg-[#f4f4f4] outline-hidden w-full items-center text-[rgb(77,76,76)] 
-      leading-[200%] border-transparent resize-none h-[70vh] my-3 " value={currentNotes.body} onChange={getContent} name="body" placeholder="Start typing" id="dynamic-note"></textarea>
+
+      <div className="text-[12px] text-[#010101] flex gap-[10px]">
+        <p>{CurrentDate}</p>
+        <p>{CurrentTime}</p>
+      </div>
+      <textarea className="my-5 text-lg bg-[#f4f4f4] outline-hidden w-full items-center text-[rgb(77,76,76)] 
+      leading-[200%] border-transparent resize-none h-[70vh]" value={currentNotes.body} onChange={getContent} name="body" placeholder="Start typing" id="dynamic-note"></textarea>
       <div className="text-area">
         <p className="total" id="total">{currentNotes.total}</p>
       </div>
