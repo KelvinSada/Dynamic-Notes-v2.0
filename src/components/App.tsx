@@ -10,7 +10,7 @@ function App() {
     <main className='relative min-h-screen bg-[#f4f4f4]'>
       <Header/>
       <Home/>
-      <div className='absolute bottom-15 w-full'>
+      <div className='absolute bottom-15 sm:bottom-10 w-full'>
         <Menu/>
       </div>
     </main>

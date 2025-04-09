@@ -153,7 +153,7 @@ const NotesBody = () => {
   
 
   return (
-  <div className="flex flex-col gap-3 w-full md:w-[70%] mx-auto px-4 py-6">
+  <div className="flex flex-col w-full md:w-[70%] mx-auto px-4 py-6">
     <input 
       type="text" 
       value={currentNotes.title}
