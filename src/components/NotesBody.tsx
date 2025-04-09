@@ -124,7 +124,7 @@ const NotesBody = () => {
 
   return (
     <div className="flex flex-col gap-[5px] w-[92%] m-auto">
-      <input type="text" className="w-full text-xl border-none outline-none" placeholder="Title" name="title"></input>
+      <input type="text" className="py-2 w-full text-xl border-none outline-none" placeholder="Title" name="title"></input>
 
       <div className="flex justify-between items-center">
         <div className="flex text-[10px] justify-between  items-center gap-[10px]">
