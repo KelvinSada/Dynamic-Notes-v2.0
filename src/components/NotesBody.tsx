@@ -25,7 +25,8 @@ const NotesBody = () => {
 
   const totalRef = useRef<number>(0)
   
-
+  // Display Amount
+  const displayAmount =`${currentNotes.total > 0?"₦ ":""}`+currentNotes.total.toLocaleString("en-US");
 
 
   // Making the Dynamic Notes Work
@@ -132,7 +133,7 @@ const NotesBody = () => {
         </div>
 
         <div className="">
-        <p className="" id="total">Total spent: {currentNotes.total}</p>
+        <p className="" id="total">Total spent: {displayAmount}</p>
         </div>
       </div>
       
