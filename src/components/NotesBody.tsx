@@ -70,6 +70,20 @@ const NotesBody = () => {
   }
 
 
+  // Get Title
+
+  const handleTitle = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const title = e.target.value;
+    console.log(title)
+
+    setCurrentNotes(prev=>{
+      return{
+        ...prev,
+        title:title,
+      }
+    })
+  }
+
   // Handling the Date snd Time
   const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
@@ -142,6 +156,8 @@ const NotesBody = () => {
   <div className="flex flex-col gap-3 w-full md:w-[70%] mx-auto px-4 py-6">
     <input 
       type="text" 
+      value={currentNotes.title}
+      onChange={handleTitle}
       className="py-3 w-full text-2xl font-medium border-none outline-none placeholder-gray-400 bg-transparent" 
       placeholder="Note Title" 
       name="title"
