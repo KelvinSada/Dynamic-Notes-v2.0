@@ -123,17 +123,21 @@ const NotesBody = () => {
 
   return (
     <div className="flex flex-col gap-[5px] w-[92%] m-auto">
-      <input type="text" className="w-full border-none outline-none" placeholder="Title" name="title"></input>
+      <input type="text" className="w-full text-xl border-none outline-none" placeholder="Title" name="title"></input>
 
-      <div className="text-[12px] text-[#010101] flex gap-[10px]">
-        <p>{CurrentDate}</p>
-        <p>{CurrentTime}</p>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-[10px]">
+          <p>{CurrentDate}</p>
+          <p>{CurrentTime}</p>
+        </div>
+
+        <div className="">
+        <p className="" id="total">Total spent: {currentNotes.total}</p>
+        </div>
       </div>
+      
       <textarea className="my-5 text-lg bg-[#f4f4f4] outline-hidden w-full items-center text-[rgb(77,76,76)] 
       leading-[200%] border-transparent resize-none h-[70vh]" value={currentNotes.body} onChange={getContent} name="body" placeholder="Start typing" id="dynamic-note"></textarea>
-      <div className="text-area">
-        <p className="total" id="total">{currentNotes.total}</p>
-      </div>
   </div>
   )
 }
