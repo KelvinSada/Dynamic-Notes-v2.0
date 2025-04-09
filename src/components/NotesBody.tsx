@@ -123,22 +123,38 @@ const NotesBody = () => {
   
 
   return (
-    <div className="flex flex-col gap-[5px] w-[92%] m-auto">
-      <input type="text" className="py-2 w-full text-xl border-none outline-none" placeholder="Title" name="title"></input>
+  <div className="flex flex-col gap-3 w-full md:w-[70%] mx-auto px-4 py-6">
+    <input 
+      type="text" 
+      className="py-3 w-full text-2xl font-medium border-none outline-none placeholder-gray-400 bg-transparent" 
+      placeholder="Note Title" 
+      name="title"
+   />
 
-      <div className="flex justify-between items-center">
-        <div className="flex text-[10px] justify-between  items-center gap-[10px]">
-          <p>{CurrentDate}</p>
-          <p>{CurrentTime}</p>
-        </div>
-
-        <div className="">
-        <p className="" id="total">Total spent: {displayAmount}</p>
-        </div>
+    <div className="flex justify-between items-center text-sm text-gray-500">
+      <div className="flex items-center gap-3">
+        <p className="font-medium">{CurrentDate}</p>
+        <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+        <p>{CurrentTime}</p>
       </div>
-      
-      <textarea className="my-5 text-lg bg-[#f4f4f4] outline-hidden w-full items-center text-[rgb(77,76,76)] 
-      leading-[200%] border-transparent resize-none h-[70vh]" value={currentNotes.body} onChange={getContent} name="body" placeholder="Start typing" id="dynamic-note"></textarea>
+
+      <div className="px-3 py-1 bg-blue-50 rounded-full">
+        <p className="font-medium text-blue-600" id="total">
+          Total: {displayAmount}
+        </p>
+      </div>
+    </div>
+  
+    <textarea 
+      className="mt-4 p-4 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
+                outline-none w-full border border-gray-200 focus:border-blue-300 
+                resize-none min-h-[60vh] leading-relaxed"
+      value={currentNotes.body} 
+      onChange={getContent} 
+      name="body" 
+      placeholder="Start writing.." 
+      id="dynamic-note"
+    ></textarea>
   </div>
   )
 }
