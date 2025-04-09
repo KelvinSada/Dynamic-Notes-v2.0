@@ -1,5 +1,5 @@
 import NotesBody from './NotesBody'
-import SavedItems from './SavedItems'
+// import SavedItems from './SavedItems'
 
 const Home = () => {
   return (
