@@ -1,16 +1,8 @@
 import React, { useContext, useEffect } from "react"
 import { useState,useRef } from "react"
 import { DeleteContext } from "./Context"
+import { NotesType } from "./Types"
 
-type NotesType = {
-  id:number,
-  title:string,
-  body:string,
-  total:number,
-  date:string,
-  time:string,
-  editable:boolean,
-}
 
 const NotesBody = () => {
     const {remove,setRemove} = useContext(DeleteContext)
