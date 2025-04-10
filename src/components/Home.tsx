@@ -1,13 +1,16 @@
-import NotesBody from './NotesBody'
-// import SavedItems from './SavedItems'
+// import NotesBody from './NotesBody'
+// // import SavedItems from './SavedItems'
 
-const Home = () => {
-  return (
-    <>
-    <NotesBody/>
-    {/* <SavedItems/> */}
-    </>
-  )
-}
+// type Delete ={
+//   remove:boolean,
+// }
+// const Home = (remove:Delete) => {
+//   return (
+//     <>
+//     <NotesBody remove={remove}/>
+//     {/* <SavedItems/> */}
+//     </>
+//   )
+// }
 
-export default Home
+// export default Home

@@ -1,8 +1,20 @@
 import { IoIosAddCircle } from "react-icons/io";
 import { FaTableList } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+import { useContext } from "react";
+import { DeleteContext } from "./Context";
+
 
 const Menu = () => {
+  const {remove,setRemove} = useContext(DeleteContext)
+  
+  const handleDelete = ()=>{
+    if (remove === false){
+      setRemove(true)
+    } 
+  }
+  console.log(remove)
   return (
     // <div className="w-fit mx-auto">
     //   <ul className="flex bg-gray-200 border-[1px] text-[30px] border-gray-300 rounded-[30px] justify-between items-center gap-3 px-4 py-1">
@@ -18,13 +30,16 @@ const Menu = () => {
         <li className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
           <FaTableList />
         </li>
-       <li className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
-         <IoIosAddCircle />
-       </li>
-       <li className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
+        <li className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
+          <IoIosAddCircle />
+        </li>
+        <li onClick={handleDelete} className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
+          <MdDelete />
+        </li>
+        <li className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
           <IoMdSettings />
-       </li>
-     </ul>
+        </li>
+      </ul>
     </div>
   )
 }

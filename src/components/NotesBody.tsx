@@ -1,5 +1,6 @@
-import React, { useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { useState,useRef } from "react"
+import { DeleteContext } from "./Context"
 
 type NotesType = {
   id:number,
@@ -12,7 +13,8 @@ type NotesType = {
 }
 
 const NotesBody = () => {
-  
+    const {remove,setRemove} = useContext(DeleteContext)
+
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
     id:0,
     title:"",
@@ -22,6 +24,23 @@ const NotesBody = () => {
     time:"",
     editable:false,
   })
+
+  useEffect(()=>{
+    if (remove === true){
+      setCurrentNotes({
+        id:0,
+        title:"",
+        body:"",
+        total:0,
+        date:"",
+        time:"",
+        editable:false,
+      })
+    } else{
+       null
+    }
+  },[remove])
+  
 
   const totalRef = useRef<number>(0)
   
@@ -33,7 +52,6 @@ const NotesBody = () => {
 
   const getContent =  (e:React.ChangeEvent<HTMLTextAreaElement>)=>{
     const values = e.target.value
-
     setCurrentNotes((prev)=>{
       return {
         ...prev,
@@ -43,6 +61,7 @@ const NotesBody = () => {
     })
     
     getNumbers(values)
+    setRemove(false)
   }
   
   const getNumbers = (texts:string)=>{
