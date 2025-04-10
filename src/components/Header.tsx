@@ -5,7 +5,7 @@ const Header = () => {
       <div className="flex justify-between items-center w-[92%] py-2 ">
         <p>Toggle</p>
         <img src="logo-dark-transparent.png"
-        className=" block w-[35%] md:w-[18%]" alt="Dynamic notes Logo"/>
+        className=" block w-[45%] md:w-[18%]" alt="Dynamic notes Logo"/>
         <p>Search</p>
       </div>
     </header>
