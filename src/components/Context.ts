@@ -1,8 +1,28 @@
 import { createContext } from "react";
-import { DeleteType } from "./Types";
+import { AppSavedType, DeleteType, SavedType,StoredPageToggle } from "./Types";
 
+type AppContextType = {
+  NoteArray:AppSavedType,
+  DeleteFunction:DeleteType,
+  SavedFunction:SavedType,
+  StoredPage:StoredPageToggle
+}
 
-export const DeleteContext = createContext<DeleteType>({
-  remove:false,
+export const AppContext = createContext<AppContextType>({
+  NoteArray:{
+    savedArray: [],
+    setSavedArray:()=>{}
+  },
+  DeleteFunction:{
+    remove:false,
   setRemove:()=>{},
+  },
+  SavedFunction:{
+    save:false,
+    setSave:()=>{}
+  },
+  StoredPage:{
+    storedPage:false,
+    setStoredPage:()=>{},
+  }
 })

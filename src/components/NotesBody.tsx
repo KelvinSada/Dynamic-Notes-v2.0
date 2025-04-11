@@ -1,32 +1,74 @@
 import React, { useContext, useEffect } from "react"
 import { useState,useRef } from "react"
-import { DeleteContext } from "./Context"
+import { AppContext } from "./Context"
 import { NotesType } from "./Types"
 
 
 const NotesBody = () => {
-    const {remove,setRemove} = useContext(DeleteContext)
+    const {DeleteFunction:{remove,setRemove},
+    SavedFunction:{save,setSave},
+    NoteArray:{savedArray,setSavedArray}} = useContext(AppContext)
 
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
-    id:0,
     title:"",
     body:"",
     total:0,
     date:"",
     time:"",
-    editable:false,
+    // editable:false,
   })
 
+
+  
+  // Saving and Clearing Data with the NewToggle
+
+  const NotesObjectRef = useRef({
+    id:0,
+  })
+  
   useEffect(()=>{
-    if (remove === true){
-      setCurrentNotes({
-        id:0,
+    if (save === true && currentNotes.body.length > 0){
+      
+      // Wanted to added an ID that didnt require rerendering to work
+      NotesObjectRef.current = {
+        id:savedArray.length+1,
+      }
+
+      const mainObject = Object.assign(NotesObjectRef.current,currentNotes)
+
+      setTimeout(()=>{
+        setSavedArray((prev)=>{
+          return[mainObject,...prev]
+        }) 
+        setSave(false)
+
+         setCurrentNotes({
         title:"",
         body:"",
         total:0,
         date:"",
         time:"",
-        editable:false,
+        // editable:false,
+      })
+      },100)
+      
+    } else {
+      setSave(false)
+    }
+  },[save])
+
+
+  // Clearing Data with the Delete Menu Toggle
+  
+  useEffect(()=>{
+    if (remove === true){
+      setCurrentNotes({
+        title:"",
+        body:"",
+        total:0,
+        date:"",
+        time:"",
+        // editable:false,
       })
     } else{
        null
@@ -47,6 +89,8 @@ const NotesBody = () => {
     setCurrentNotes((prev)=>{
       return {
         ...prev,
+        time:CurrentTime,
+        date:CurrentDate,
         editable:true,
         body:values,
       }
@@ -82,10 +126,8 @@ const NotesBody = () => {
 
 
   // Get Title
-
   const handleTitle = (e:React.ChangeEvent<HTMLInputElement>)=>{
     const title = e.target.value;
-    console.log(title)
 
     setCurrentNotes(prev=>{
       return{
@@ -135,6 +177,7 @@ const NotesBody = () => {
 
   const CurrentDate = `${getDay} ${Month[getMonth]}`
   const CurrentTime = `${hours}:${minute} ${zone}`
+
   // setCurrentNotes(prev=>{
   //   return{
   //     ...prev,
@@ -147,10 +190,8 @@ const NotesBody = () => {
 
   useEffect(()=>{
     const data = localStorage.getItem("Current-Notes-Saved")
-    console.log
     if (data){
       const resource = JSON.parse(data);
-      console.log(resource)
       setCurrentNotes(resource)
     }
   },[])

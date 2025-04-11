@@ -1,11 +1,17 @@
 import { CiMenuKebab } from "react-icons/ci";
+import { NoteArrayType } from "./Types";
 
+type Values ={
+  values:NoteArrayType
+}
 
-const NoteItem = () => {
+const NoteItem = ({values}:Values) => {
+  console.log(values.id)
+
   return (
     <section className=" flex flex-col gap-3 border-1 border-gray-300 hover:border-blue-300 rounded-[10px] p-3 bg-[#F8F8F8]">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl text-gray-800 font-700">September Spendings</h2>
+        <h2 className="text-2xl text-gray-800 font-700">{values.title}</h2>
         <div className="relative text-lg hover:bg-gray-300 py-1 hover:rounded-[10px] text-black">
           <CiMenuKebab />
         
@@ -17,10 +23,10 @@ const NoteItem = () => {
           </div> */}
         </div>
       </div>
-       <p className="text-gray-500">Spendings for the month of September</p>
+       <p className="text-gray-500">{values.body}</p>
       <div className="flex justify-between">
-        <p className="text-[12px] text-gray-800">Friday April 15th</p>
-        <p className="bg-blue-50 rounded text-blue-500 px-2 w-fit">Total: N34,000</p>
+        <p className="text-[12px] text-gray-800">{values.date}</p>
+        <p className="bg-blue-50 rounded text-blue-500 px-2 w-fit">Total: {values.total}</p>
       </div>
 
       
