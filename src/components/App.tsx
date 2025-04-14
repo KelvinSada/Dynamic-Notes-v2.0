@@ -12,10 +12,13 @@ function App() {
 
   const [savedArray,setSavedArray] = useState<NoteArrayType[]>([])
 
-  const [remove,setRemove] = useState(false)
-  const [save,setSave] = useState(false)
-  const [storedPage,setStoredPage] = useState(false)
+  const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
+  const [save,setSave] = useState(false)      // Save the Current Notes and Clear the Page Empty
+  const [storedPage,setStoredPage] = useState(false)   // Go to the Storage Page
 
+  const [viewNotes,setViewNotes] = useState<number|null>(null)   // Click n a Notes from the saved Notes Menu to view in the Main Notes Page
+
+  console.log(viewNotes)
   // Save the Array to Local Storage
 
   useEffect(()=>{
@@ -35,7 +38,8 @@ function App() {
         NoteArray:{savedArray,setSavedArray},
         DeleteFunction:{remove,setRemove},
         SavedFunction:{save,setSave},
-        StoredPage:{storedPage,setStoredPage}}}>
+        StoredPage:{storedPage,setStoredPage},
+        AccessSavedNotes:{viewNotes,setViewNotes}}}>
           
       <main className='relative min-h-screen bg-[#f4f4f4]'>
         <Header/>
@@ -49,3 +53,16 @@ function App() {
 }
 
 export default App
+
+
+// Make the footer fixed to the bottom of the page
+
+// .footer{
+//   position:fixed;
+//   width:100%;
+//   padding:2em 0;
+//   background-color: red;
+//   /* top:95vh; */
+//   bottom:.00001vh;
+//   /* display: none; */
+// }

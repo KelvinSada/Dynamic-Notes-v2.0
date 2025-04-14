@@ -36,3 +36,9 @@ export type AppSavedType = {
   savedArray: NoteArrayType[],
   setSavedArray:React.Dispatch<React.SetStateAction<NoteArrayType[]>>
 }
+
+//View saved Notes
+export type ViewSavedNotes = {
+  viewNotes: null|number,
+  setViewNotes: React.Dispatch<React.SetStateAction<number | null>>
+}

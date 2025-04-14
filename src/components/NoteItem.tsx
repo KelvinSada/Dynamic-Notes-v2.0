@@ -1,15 +1,21 @@
 import { CiMenuKebab } from "react-icons/ci";
 import { NoteArrayType } from "./Types";
+import { useContext } from "react";
+import { AppContext } from "./Context";
 
 type Values ={
   values:NoteArrayType
 }
 
 const NoteItem = ({values}:Values) => {
-  console.log(values.id)
+  const {AccessSavedNotes:{setViewNotes}}= useContext(AppContext)
+
+  const handleViewNotes = ()=>{
+    setViewNotes(values.id)
+  }
 
   return (
-    <section className=" flex flex-col gap-3 border-1 border-gray-300 hover:border-blue-300 rounded-[10px] p-3 bg-[#F8F8F8]">
+    <section onClick={handleViewNotes} className=" flex flex-col gap-3 border-1 border-gray-300 hover:border-blue-300 rounded-[10px] p-3 bg-[#F8F8F8]">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl text-gray-800 font-700">{values.title}</h2>
         <div className="relative text-lg hover:bg-gray-300 py-1 hover:rounded-[10px] text-black">

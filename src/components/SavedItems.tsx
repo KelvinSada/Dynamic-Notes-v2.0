@@ -2,7 +2,6 @@ import { AppContext } from "./Context"
 import NoteItem from "./NoteItem"
 import { useContext } from "react"
 
-
 const SavedItems = () => {
 
   const {NoteArray:{savedArray}} = useContext(AppContext)
