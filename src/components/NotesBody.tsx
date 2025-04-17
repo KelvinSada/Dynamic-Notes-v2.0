@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from "react"
 import { useState,useRef } from "react"
 import { AppContext } from "./Context"
-import { NotesType } from "./Types"
+import { NoteArrayType, NotesType } from "./Types"
 
 
 const NotesBody = () => {
     const {DeleteFunction:{remove,setRemove},
     SavedFunction:{save,setSave},
-    NoteArray:{savedArray,setSavedArray}} = useContext(AppContext)
+    NoteArray:{savedArray,setSavedArray},
+    AccessSavedNotes:{viewNotes,}} = useContext(AppContext)
 
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
     title:"",
@@ -18,7 +19,46 @@ const NotesBody = () => {
     // editable:false,
   })
 
+// Handling the Date and Time
+const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
+const getDay = new Date().getDate()
+const getMonth = new Date().getMonth()
+// const getFullYear = new Date().getFullYear()
+
+const getMinute = new Date().getMinutes()
+let minute:number|string
+if (getMinute < 10){
+  minute = `0${getMinute}`
+} else{
+  minute = getMinute
+}
+
+const getHour = new Date().getHours()
+
+let hours:number|string
+let zone:string
+
+if (getHour < 12){
+  if (getHour < 10){
+    hours = `0${getHour}`
+  } else{
+    hours = getHour
+  }
+  zone = "AM"
+} else if (getHour === 12){
+  hours = getHour
+  zone = "PM"
+} else if (getHour === 24){
+  hours = `00`
+  zone = "AM"
+} else{
+  hours = (getHour - 12)
+  zone = "PM"
+}
+
+const CurrentDate = `${getDay} ${Month[getMonth]}`
+const CurrentTime = `${hours}:${minute} ${zone}`
   
   // Saving and Clearing Data with the NewToggle
 
@@ -58,6 +98,41 @@ const NotesBody = () => {
   },[save])
 
 
+  // Acessing NotesData from a stored Notes Page into the Current Notes
+  
+  const [access,setAccess] = useState(false)
+
+  useEffect(()=>{
+   
+    if (viewNotes){
+      savedArray.forEach(getItem)
+    }
+
+  },[viewNotes,access])
+
+  const getItem =(item:NoteArrayType)=>{
+    const arrayId = item.id
+
+    if (arrayId === viewNotes){
+      setAccess(true)                // To make this rerender and update
+      const {body,title,total} = item
+
+      setCurrentNotes({
+        title:title,
+        body:body,
+        total:total,
+        date:CurrentDate,
+        time:CurrentTime,
+      })
+
+      setTimeout(()=>{
+        setAccess(false)
+      },100)
+    }
+  }
+
+  
+
   // Clearing Data with the Delete Menu Toggle
   
   useEffect(()=>{
@@ -73,9 +148,9 @@ const NotesBody = () => {
     } else{
        null
     }
+    setRemove(false)
   },[remove])
   
-
   const totalRef = useRef<number>(0)
   
   // Display Amount
@@ -86,12 +161,13 @@ const NotesBody = () => {
 
   const getContent =  (e:React.ChangeEvent<HTMLTextAreaElement>)=>{
     const values = e.target.value
+    // setCurrentNotes(NotesRef.current)
     setCurrentNotes((prev)=>{
       return {
         ...prev,
         time:CurrentTime,
         date:CurrentDate,
-        editable:true,
+        // editable:true,
         body:values,
       }
     })
@@ -137,46 +213,7 @@ const NotesBody = () => {
     })
   }
 
-  // Handling the Date snd Time
-  const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-
-  const getDay = new Date().getDate()
-  const getMonth = new Date().getMonth()
-  // const getFullYear = new Date().getFullYear()
-
-  const getMinute = new Date().getMinutes()
-  let minute:number|string
-  if (getMinute < 10){
-    minute = `0${getMinute}`
-  } else{
-    minute = getMinute
-  }
-
-  const getHour = new Date().getHours()
-
-  let hours:number|string
-  let zone:string
-
-  if (getHour < 12){
-    if (getHour < 10){
-      hours = `0${getHour}`
-    } else{
-      hours = getHour
-    }
-    zone = "AM"
-  } else if (getHour === 12){
-    hours = getHour
-    zone = "PM"
-  } else if (getHour === 24){
-    hours = `00`
-    zone = "AM"
-  } else{
-    hours = (getHour - 12)
-    zone = "PM"
-  }
-
-  const CurrentDate = `${getDay} ${Month[getMonth]}`
-  const CurrentTime = `${hours}:${minute} ${zone}`
+  
 
   // setCurrentNotes(prev=>{
   //   return{

@@ -18,8 +18,13 @@ function App() {
 
   const [viewNotes,setViewNotes] = useState<number|null>(null)   // Click n a Notes from the saved Notes Menu to view in the Main Notes Page
 
-  console.log(viewNotes)
-  // Save the Array to Local Storage
+  useEffect(()=>{
+    if (viewNotes){
+      setStoredPage(false)
+    }
+  },[viewNotes])
+  
+    // Save the Array to Local Storage
 
   useEffect(()=>{
     const data = localStorage.getItem("Notes_Array")
@@ -44,7 +49,7 @@ function App() {
       <main className='relative min-h-screen bg-[#f4f4f4]'>
         <Header/>
         {storedPage === true?<SavedItems/>:<NotesBody/>}
-        <div className='absolute bottom-25 sm:bottom-10 w-full'>
+        <div className='fixed bottom-25 sm:bottom-10 w-full'>
           <Menu/>
         </div>
       </main>
