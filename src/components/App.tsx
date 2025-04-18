@@ -21,11 +21,10 @@ function App() {
 
   useEffect(()=>{
     if (viewNotes){
-      setStoredPage("saved")
+      setStoredPage("home")
     }
   },[viewNotes])
 
-  
   // Save the Array to Local Storage
 
   useEffect(()=>{
