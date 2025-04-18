@@ -43,7 +43,7 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
       <div className="flex items-center justify-between">
         <h2 onClick={handleViewNotes} className="text-2xl text-gray-800 font-700">{values.title}</h2>
         <div className="relative text-lg hover:bg-gray-300 py-1 hover:rounded-[10px] text-black">
-          <div>{values.id}</div>
+          {/* <div>{values.id}</div> */}
           <button onClick={()=>ToggleClick(values.id)}>
             <CiMenuKebab />
           </button>
