@@ -3,9 +3,10 @@ import './App.css'
 import Header from './Header'
 import Menu from './Menu'
 import NotesBody from './NotesBody'
-import { NoteArrayType } from './Types'
+import { NoteArrayType, Pages } from './Types'
 import { AppContext } from './Context'
 import SavedItems from './SavedItems'
+import Settings from './Settings'
 
 
 function App() {
@@ -14,17 +15,18 @@ function App() {
 
   const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
   const [save,setSave] = useState(false)      // Save the Current Notes and Clear the Page Empty
-  const [storedPage,setStoredPage] = useState(false)   // Go to the Storage Page
+  const [storedPage,setStoredPage] = useState<Pages>("home")   // Go to the Storage Page
 
   const [viewNotes,setViewNotes] = useState<number|null>(null)   // Click n a Notes from the saved Notes Menu to view in the Main Notes Page
 
   useEffect(()=>{
     if (viewNotes){
-      setStoredPage(false)
+      setStoredPage("saved")
     }
   },[viewNotes])
+
   
-    // Save the Array to Local Storage
+  // Save the Array to Local Storage
 
   useEffect(()=>{
     const data = localStorage.getItem("Notes_Array")
@@ -48,7 +50,9 @@ function App() {
           
       <main className='relative min-h-screen bg-[#f4f4f4]'>
         <Header/>
-        {storedPage === true?<SavedItems/>:<NotesBody/>}
+        {storedPage === "home"?<NotesBody/>:
+        storedPage === "saved"?<SavedItems/>:
+        <Settings/>}
         <div className='fixed bottom-25 sm:bottom-10 w-full'>
           <Menu/>
         </div>

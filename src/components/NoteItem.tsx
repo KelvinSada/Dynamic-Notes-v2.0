@@ -7,7 +7,6 @@ type Values ={
   values:NoteArrayType,
   pickedNote: number | null,
   setpickedNote: React.Dispatch<React.SetStateAction<number | null>>,
-  // ToggleClick:() => void
 }
 
 const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
@@ -28,9 +27,9 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
  
 
   // Hande deletion of Notes
+
   const handleDeleteNote=()=>{
     const updatedArray:NoteArrayType[] = []
-    // console.log(savedArray)
     savedArray.filter(item=>{
       if (item.id !== values.id){
         updatedArray.push(item)

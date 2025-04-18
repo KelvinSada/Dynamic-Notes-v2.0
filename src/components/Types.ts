@@ -14,10 +14,13 @@ export type NotesType = {
   // editable:boolean,
 }
 
+// Pages Toggle
+export type Pages= "home" | "saved" | "settings"
+
 // Go to Stored Value
 export type StoredPageToggle ={
-  storedPage:boolean,
-  setStoredPage:React.Dispatch<React.SetStateAction<boolean>>;
+  storedPage:Pages,
+  setStoredPage:React.Dispatch<React.SetStateAction<Pages>>;
 }
 
 // Delete Context used in Context.ts

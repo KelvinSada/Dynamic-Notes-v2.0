@@ -23,7 +23,7 @@ export const AppContext = createContext<AppContextType>({
     setSave:()=>{}
   },
   StoredPage:{
-    storedPage:false,
+    storedPage:"home",
     setStoredPage:()=>{},
   },
   AccessSavedNotes:{

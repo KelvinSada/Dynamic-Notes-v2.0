@@ -12,8 +12,8 @@ const Menu = () => {
       StoredPage:{storedPage,setStoredPage}} = useContext(AppContext)
   
   const handleStoredPage =()=>{
-    if (storedPage === false){
-      setStoredPage(true)
+    if (storedPage !== "saved"){
+      setStoredPage("saved")
     }
   }
 
@@ -27,8 +27,14 @@ const Menu = () => {
     if (save === false){
      setSave(true)
     }
-    if (storedPage === true){
-      setStoredPage(false)
+    if (storedPage !== "home"){
+      setStoredPage("home")
+    }
+  }
+
+  const handleSettings=()=>{
+    if (storedPage !== "settings"){
+      setStoredPage("settings")
     }
   }
   return (
@@ -43,7 +49,7 @@ const Menu = () => {
         <li onClick={handleDelete} className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
           <MdDelete />
         </li>
-        <li className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
+        <li onClick={handleSettings} className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
           <IoMdSettings />
         </li>
       </ul>
