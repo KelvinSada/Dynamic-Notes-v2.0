@@ -7,7 +7,7 @@ const SavedItems = () => {
   const {NoteArray:{savedArray}} = useContext(AppContext)
   const [pickedNote,setPickedNote] = useState<number|null>(null)
 
-  console.log(pickedNote)
+  // console.log(pickedNote)
   // const handleClick=()=>{
   //   // alert("hello")
   // }
