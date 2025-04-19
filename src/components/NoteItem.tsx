@@ -31,7 +31,7 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
   }
  
 
-  // Hande deletion of Notes
+  // Handle deletion of Notes
 
   const handleDeleteNote=()=>{
     const updatedArray:NoteArrayType[] = []
@@ -42,6 +42,15 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
     })
     setSavedArray(updatedArray)
   }
+
+  // Limit the no of words to be shown for the body
+  let detail = ""
+  if (values.body.length < 40){
+    detail = values.body
+  } else {
+    detail = `${values.body.slice(0,40)}...`
+  }
+
 
   return (
     <section className=" flex flex-col gap-3 border-1 border-gray-300 hover:border-blue-300 rounded-[10px] p-3 bg-[#F8F8F8]">
@@ -62,7 +71,7 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
           </div>:null}
         </div>
       </div>
-       <p onClick={handleViewNotes} className="text-gray-500">{values.body}</p>
+       <p onClick={handleViewNotes} className="text-gray-500">{detail}</p>
       <div className="flex justify-between">
         <p className="text-[12px] text-gray-800">{values.date}</p>
         <p className="bg-blue-50 rounded text-blue-500 px-2 w-fit">Total: {values.total}</p>
