@@ -44,18 +44,26 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
   }
 
   // Limit the no of words to be shown for the body
-  let detail = ""
+  let displayBody = ""
   if (values.body.length < 40){
-    detail = values.body
+    displayBody = values.body
   } else {
-    detail = `${values.body.slice(0,40)}...`
+    displayBody = `${values.body.slice(0,40)}...`
   }
 
+  //Displaying the title of the notes
+
+  let displayTitle = ""
+  if (values.title){
+   displayTitle = values.title.slice(0,20)
+  } else {
+    displayTitle = `${values.body.slice(0,20)}..`
+  }
 
   return (
     <section className=" flex flex-col gap-3 border-1 border-gray-300 hover:border-blue-300 rounded-[10px] p-3 bg-[#F8F8F8]">
       <div className="flex items-center justify-between">
-        <h2 onClick={handleViewNotes} className="text-2xl text-gray-800 font-700">{values.title}</h2>
+        <h2 onClick={handleViewNotes} className="text-2xl text-gray-800 font-700">{displayTitle}</h2>
         <div className="relative text-lg hover:bg-gray-300 py-1 hover:rounded-[10px] text-black">
           {/* <div>{values.id}</div> */}
           <button onClick={()=>ToggleClick(values.id)}>
@@ -71,7 +79,7 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
           </div>:null}
         </div>
       </div>
-       <p onClick={handleViewNotes} className="text-gray-500">{detail}</p>
+       <p onClick={handleViewNotes} className="text-gray-500">{displayBody}</p>
       <div className="flex justify-between">
         <p className="text-[12px] text-gray-800">{values.date}</p>
         <p className="bg-blue-50 rounded text-blue-500 px-2 w-fit">Total: {values.total}</p>
