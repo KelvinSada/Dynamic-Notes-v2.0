@@ -58,6 +58,9 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
     displayTitle = `${values.body.slice(0,20)}..`
   }
 
+  // Displaying the Total
+  const displayTotal = `${values.total > 0?"₦ ":""}`+values.total.toLocaleString("en-US");
+
   return (
     <section className=" flex flex-col gap-3 border-1 border-gray-300 hover:border-blue-300 rounded-[10px] p-3 bg-[#F8F8F8]">
       <div className="flex items-center justify-between">
@@ -79,8 +82,12 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
       </div>
        <p onClick={handleViewNotes} className="text-gray-500 cursor-pointer">{displayBody}</p>
       <div className="flex justify-between">
-        <p className="text-[12px] text-gray-800">{values.date}</p>
-        <p className="bg-blue-50 rounded text-blue-500 px-2 w-fit">Total: {values.total}</p>
+        <div className="flex items-center gap-3">
+          <p className="text-[12px] text-gray-400">{values.time}</p>
+          <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+          <p className="text-[12px] text-gray-600">{values.date}</p>
+        </div>
+        <p className="bg-blue-50 rounded text-blue-500 px-2 w-fit">Total: {displayTotal}</p>
       </div>
       
 

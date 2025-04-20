@@ -271,7 +271,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       </div>
 
       <div className="px-3 py-1 bg-blue-50 rounded-full">
-        <p className="font-medium text-blue-600 text-2xl" id="total">
+        <p className="font-medium text-blue-600 text-[16px]" id="total">
           Total: {displayAmount}
         </p>
       </div>
