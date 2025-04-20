@@ -18,12 +18,13 @@ function App() {
   const [storedPage,setStoredPage] = useState<Pages>("home")   // Go to the Storage Page
 
   const [viewNotes,setViewNotes] = useState<NotesSelected>({
-    notesId:0,
+    notesId:null,
     notePickedToggle:false,
   })   // Click a Notes from the saved Notes Menu to view in the Main Notes Page
 
   useEffect(()=>{
       setStoredPage("home")
+    
   },[viewNotes.notePickedToggle])
 
   // Save the Array to Local Storage

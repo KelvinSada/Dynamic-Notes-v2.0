@@ -27,7 +27,10 @@ export const AppContext = createContext<AppContextType>({
     setStoredPage:()=>{},
   },
   AccessSavedNotes:{
-    viewNotes: null,
+    viewNotes:{
+      notesId:null,
+      notePickedToggle:false,
+    },
     setViewNotes: ()=>{},
   }
 })
