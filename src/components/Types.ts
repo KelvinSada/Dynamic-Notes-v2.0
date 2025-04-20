@@ -6,6 +6,7 @@ export type NoteArrayType = NotesType & {
 
 // Current Notes in NotesBody.tsx
 export type NotesType = {
+  id:number,
   title:string|undefined,
   body:string,
   total:number,

@@ -11,12 +11,12 @@ const NotesBody = () => {
     AccessSavedNotes:{viewNotes,}} = useContext(AppContext)
 
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
+    id:0,
     title:"",
     body:"",
     total:0,
     date:"",
     time:"",
-    // editable:false,
   })
 
 // Handling the Date and Time
@@ -60,42 +60,68 @@ if (getHour < 12){
 const CurrentDate = `${getDay} ${Month[getMonth]}`
 const CurrentTime = `${hours}:${minute} ${zone}`
   
+
   // Saving and Clearing Data with the NewToggle
-
-  const NotesObjectRef = useRef({
-    id:0,
-  })
   
-  useEffect(()=>{
-    if (save === true && currentNotes.body.length > 0){
+    const notesIdRef = useRef<number>(0) 
+  
+    useEffect(()=>{
+    
+    notesIdRef.current = savedArray.length+1
+
+    if (save === true && currentNotes.body.length > 0 && currentNotes.id === 0){
       
-      // Wanted to added an ID that didnt require rerendering to work
-      NotesObjectRef.current = {
-        id:savedArray.length+1,
-      }
+      const currentNotesDuplicate = {...currentNotes}
 
-      const mainObject = Object.assign(NotesObjectRef.current,currentNotes)
-
+      currentNotesDuplicate.id = notesIdRef.current
+      
       setTimeout(()=>{
         setSavedArray((prev)=>{
-          return[mainObject,...prev]
+          return[currentNotesDuplicate,...prev]
         }) 
         setSave(false)
-
+        
          setCurrentNotes({
+          id:0,
+          title:"",
+          body:"",
+          total:0,
+          date:"",
+          time:"",
+      })
+    },100)
+    
+  } else if (save === true && currentNotes.body.length > 0 && currentNotes.id > 0) {
+
+    const savedArrayDuplicate = [...savedArray]
+    
+    // Removing Array with asimilar ID as the current Array
+    const filteredArray = savedArrayDuplicate.filter(item=>{
+      return item.id !== currentNotes.id
+    })
+    
+    console.log(filteredArray)
+    
+    setSavedArray(()=>{
+      return [currentNotes,...filteredArray]
+    })
+     
+    setSave(false)
+      
+       setCurrentNotes({
+        id:0,
         title:"",
         body:"",
         total:0,
         date:"",
         time:"",
-        // editable:false,
-      })
-      },100)
-      
-    } else {
-      setSave(false)
-    }
-  },[save])
+    })
+    
+} else{
+  
+  setSave(false)
+  }
+},[save])
 
 
   // Acessing NotesData from a stored Notes Page into the Current Notes
@@ -115,9 +141,10 @@ const CurrentTime = `${hours}:${minute} ${zone}`
 
     if (arrayId === viewNotes){
       setAccess(true)                // To make this rerender and update
-      const {body,title,total} = item
+      const {body,title,total,id} = item
 
       setCurrentNotes({
+        id:id,
         title:title,
         body:body,
         total:total,
@@ -138,12 +165,12 @@ const CurrentTime = `${hours}:${minute} ${zone}`
   useEffect(()=>{
     if (remove === true){
       setCurrentNotes({
+        id:0,
         title:"",
         body:"",
         total:0,
         date:"",
         time:"",
-        // editable:false,
       })
     } else{
        null
@@ -156,7 +183,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
   // Display Amount
   const displayAmount =`${currentNotes.total > 0?"₦ ":""}`+currentNotes.total.toLocaleString("en-US");
 
-
+  
   // Making the Dynamic Notes Work
 
   const getContent =  (e:React.ChangeEvent<HTMLTextAreaElement>)=>{
@@ -167,11 +194,9 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         ...prev,
         time:CurrentTime,
         date:CurrentDate,
-        // editable:true,
         body:values,
       }
     })
-    
     getNumbers(values)
     setRemove(false)
   }
@@ -213,16 +238,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
     })
   }
 
-  
 
-  // setCurrentNotes(prev=>{
-  //   return{
-  //     ...prev,
-  //     date:CurrentDate,
-  //     time:CurrentTime,
-  //   }
-  // })
-  
   // Save Current Notes to Local Storage
 
   useEffect(()=>{

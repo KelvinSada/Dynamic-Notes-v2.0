@@ -70,7 +70,7 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
             <CiMenuKebab />
           </button>
         
-          {isOpen?<div className="absolute p-1 rounded-[5px] text-sm right-5 bg-[#f8f8f8] border-[1px] border-gray-400 w-fit ">
+          {isOpen?<div className="absolute p-3 rounded-[5px] text-md right-5 bg-[#f8f8f8] border-[1px] border-gray-400 w-fit ">
            <ul>
             <li className="cursor-pointer hover:text-gray-500" onClick={handleViewNotes}>View</li>
             <li className="text-red-500 hover:text-red-300 cursor-pointer"
