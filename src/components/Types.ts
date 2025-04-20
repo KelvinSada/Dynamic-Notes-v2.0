@@ -43,7 +43,7 @@ export type AppSavedType = {
 
 //View saved Notes
 export type NotesSelected = {
-    notesId:null |number,
+    notesId:number,
     notePickedToggle:boolean,
 }
 export type ViewSavedNotes = {
