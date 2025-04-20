@@ -7,8 +7,8 @@ import { AppContext } from "./Context";
 
 
 const Menu = () => {
-      const {DeleteFunction:{remove,setRemove},
-      SavedFunction:{save,setSave},
+      const {DeleteFunction:{setRemove},
+      SavedFunction:{setSave},
       StoredPage:{storedPage,setStoredPage}} = useContext(AppContext)
   
   const handleStoredPage =()=>{
@@ -18,15 +18,12 @@ const Menu = () => {
   }
 
   const handleDelete = ()=>{
-    if (remove === false){
-      setRemove(true)
-    } 
+   setRemove(prev=>!prev)
   }
 
   const handleSave=()=>{
-    if (save === false){
-     setSave(true)
-    }
+    setSave(prev=>!prev)
+
     if (storedPage !== "home"){
       setStoredPage("home")
     }

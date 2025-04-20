@@ -10,17 +10,15 @@ type Values ={
 }
 
 const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
-  const {AccessSavedNotes:{viewNotes,setViewNotes},
-  StoredPage:{setStoredPage},
+  const {AccessSavedNotes:{setViewNotes},
   NoteArray:{savedArray,setSavedArray}}= useContext(AppContext)
 
 
   const handleViewNotes = ()=>{
-    if (values.id !== viewNotes){
-      setViewNotes(values.id)
-    } else{
-      setStoredPage("home")
-    }
+    setViewNotes({
+        notesId:values.id,
+        notePickedToggle:true,
+    })
   }
 
   // Clicking the toggle on the menu property

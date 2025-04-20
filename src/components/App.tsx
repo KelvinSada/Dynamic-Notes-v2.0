@@ -3,7 +3,7 @@ import './App.css'
 import Header from './Header'
 import Menu from './Menu'
 import NotesBody from './NotesBody'
-import { NoteArrayType, Pages } from './Types'
+import { NoteArrayType, Pages,NotesSelected } from './Types'
 import { AppContext } from './Context'
 import SavedItems from './SavedItems'
 import Settings from './Settings'
@@ -17,7 +17,10 @@ function App() {
   const [save,setSave] = useState(false)      // Save the Current Notes and Clear the Page Empty
   const [storedPage,setStoredPage] = useState<Pages>("home")   // Go to the Storage Page
 
-  const [viewNotes,setViewNotes] = useState<number|null>(null)   // Click n a Notes from the saved Notes Menu to view in the Main Notes Page
+  const [viewNotes,setViewNotes] = useState<NotesSelected>({
+    notesId:null,
+    notePickedToggle:false,
+  })   // Click a Notes from the saved Notes Menu to view in the Main Notes Page
 
   useEffect(()=>{
     if (viewNotes){

@@ -8,7 +8,7 @@ const NotesBody = () => {
     const {DeleteFunction:{remove,setRemove},
     SavedFunction:{save,setSave},
     NoteArray:{savedArray,setSavedArray},
-    AccessSavedNotes:{viewNotes,}} = useContext(AppContext)
+    AccessSavedNotes:{viewNotes,setViewNotes}} = useContext(AppContext)
 
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
     id:0,
@@ -69,7 +69,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
     
     notesIdRef.current = savedArray.length+1
 
-    if (save === true && currentNotes.body.length > 0 && currentNotes.id === 0){
+    if (currentNotes.body.length > 0 && currentNotes.id === 0){
       
       const currentNotesDuplicate = {...currentNotes}
 
@@ -91,7 +91,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       })
     },100)
     
-  } else if (save === true && currentNotes.body.length > 0 && currentNotes.id > 0) {
+  } else if ( currentNotes.body.length > 0 && currentNotes.id > 0) {
 
     const savedArrayDuplicate = [...savedArray]
     
@@ -100,7 +100,6 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       return item.id !== currentNotes.id
     })
     
-    console.log(filteredArray)
     
     setSavedArray(()=>{
       return [currentNotes,...filteredArray]
@@ -117,29 +116,28 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         time:"",
     })
     
-} else{
-  
-  setSave(false)
-  }
+} 
 },[save])
 
 
   // Acessing NotesData from a stored Notes Page into the Current Notes
   
   const [access,setAccess] = useState(false)
-
   useEffect(()=>{
-   
-    if (viewNotes){
+    // console.log(`${viewNotes} just rendered`)
+    
+    if (viewNotes && viewNotes.notePickedToggle === true){
       savedArray.forEach(getItem)
     }
-
-  },[viewNotes,access])
-
+    console.log(viewNotes.notePickedToggle)
+    
+  },[viewNotes.notePickedToggle,access])
+  
   const getItem =(item:NoteArrayType)=>{
     const arrayId = item.id
 
-    if (arrayId === viewNotes){
+    if (arrayId === viewNotes.notesId){
+      console.log(item)
       setAccess(true)                // To make this rerender and update
       const {body,title,total,id} = item
 
@@ -153,17 +151,19 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       })
 
       setTimeout(()=>{
-        setAccess(false)
+        setViewNotes(prev=>{
+          return{
+            ...prev,
+            notePickedToggle:false,
+          }
+        })
       },100)
     }
   }
 
-  
-
   // Clearing Data with the Delete Menu Toggle
   
   useEffect(()=>{
-    if (remove === true){
       setCurrentNotes({
         id:0,
         title:"",
@@ -172,11 +172,8 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         date:"",
         time:"",
       })
-    } else{
-       null
-    }
-    setRemove(false)
-  },[remove])
+    } 
+  ,[remove])
   
   const totalRef = useRef<number>(0)
   
@@ -255,8 +252,6 @@ const CurrentTime = `${hours}:${minute} ${zone}`
 
  
 
-  
-
   return (
   <div className="flex flex-col w-full md:w-[70%] mx-auto px-4 py-6">
     <input 
@@ -276,7 +271,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       </div>
 
       <div className="px-3 py-1 bg-blue-50 rounded-full">
-        <p className="font-medium text-blue-600" id="total">
+        <p className="font-medium text-blue-600 text-2xl" id="total">
           Total: {displayAmount}
         </p>
       </div>

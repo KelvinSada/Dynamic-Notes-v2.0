@@ -42,7 +42,11 @@ export type AppSavedType = {
 }
 
 //View saved Notes
+export type NotesSelected = {
+    notesId:null |number,
+    notePickedToggle:boolean,
+}
 export type ViewSavedNotes = {
-  viewNotes: null|number,
-  setViewNotes: React.Dispatch<React.SetStateAction<number | null>>
+  viewNotes:NotesSelected,
+  setViewNotes: React.Dispatch<React.SetStateAction<NotesSelected>>
 }
