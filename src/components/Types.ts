@@ -12,7 +12,7 @@ export type NotesType = {
   total:number,
   date:string,
   time:string,
-  // editable:boolean,
+  dynamicItems:[]
 }
 
 // Pages Toggle
@@ -49,4 +49,11 @@ export type NotesSelected = {
 export type ViewSavedNotes = {
   viewNotes:NotesSelected,
   setViewNotes: React.Dispatch<React.SetStateAction<NotesSelected>>
+}
+
+// Add Notes Category Toggle
+
+export type AddCategoryToggle={
+  categoryToggle:boolean,
+  setCategoryToggle:React.Dispatch<React.SetStateAction<boolean>>,
 }

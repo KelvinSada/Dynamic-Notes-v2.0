@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { useState,useRef } from "react"
 import { AppContext } from "./Context"
 import { NoteArrayType, NotesType } from "./Types"
+import NotesTopBar from "./NotesTopBar"
 
 
 const NotesBody = () => {
@@ -17,6 +18,7 @@ const NotesBody = () => {
     total:0,
     date:"",
     time:"",
+    dynamicItems:[]
   })
 
 // Handling the Date and Time
@@ -88,6 +90,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
           total:0,
           date:"",
           time:"",
+          dynamicItems:[]
       })
     },100)
     
@@ -114,6 +117,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         total:0,
         date:"",
         time:"",
+        dynamicItems:[]
     })
     
 } 
@@ -129,8 +133,6 @@ const CurrentTime = `${hours}:${minute} ${zone}`
     if (viewNotes && viewNotes.notePickedToggle === true){
       savedArray.forEach(getItem)
     }
-    console.log(viewNotes.notePickedToggle)
-    
   },[viewNotes.notePickedToggle,access])
   
   const getItem =(item:NoteArrayType)=>{
@@ -148,6 +150,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         total:total,
         date:CurrentDate,
         time:CurrentTime,
+        dynamicItems:[]
       })
 
       setTimeout(()=>{
@@ -171,6 +174,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         total:0,
         date:"",
         time:"",
+        dynamicItems:[]
       })
     } 
   ,[remove])
@@ -277,6 +281,19 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       </div>
     </div>
   
+  {/* <div className="flex gap-4">
+    <div className="bg-amber-50 w-fit">
+      <p>Current Notes</p>
+    </div>
+    <div>
+      <p>Add new section</p>
+    </div>
+    <div>
+      <p>add +</p>
+    </div>
+  </div> */}
+  <NotesTopBar/>
+
     <textarea 
       className="mt-4 p-4 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
                 outline-none w-full border border-gray-200 focus:border-blue-300 
