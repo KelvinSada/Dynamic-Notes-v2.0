@@ -3,7 +3,7 @@ import { AppContext } from "./Context"
 
 const NotesTopBar = () => {
 const {AddCategoryToggle:{setCategoryToggle},
-      CurrentEditableNotes:{currentNotes,setCurrentNotes}} = useContext(AppContext)
+      CurrentEditableNotes:{currentNotes}} = useContext(AppContext)
 
   const addNewCategory=()=>{
     setCategoryToggle(true)
