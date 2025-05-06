@@ -3,7 +3,7 @@ import './App.css'
 import Header from './Header'
 import Menu from './Menu'
 import NotesBody from './NotesBody'
-import { NoteArrayType, Pages,NotesSelected } from './Types'
+import { NoteArrayType, Pages,NotesSelected, NotesType } from './Types'
 import { AppContext } from './Context'
 import SavedItems from './SavedItems'
 import Settings from './Settings'
@@ -17,6 +17,16 @@ function App() {
   const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
   const [save,setSave] = useState(false)      // Save the Current Notes and Clear the Page Empty
   const [storedPage,setStoredPage] = useState<Pages>("home")   // Go to the Storage Page
+
+  const [currentNotes,setCurrentNotes] = useState<NotesType>({
+    id:0,
+    title:"",
+    body:"",
+    total:0,
+    date:"",
+    time:"",
+    dynamicItems:[]
+  })
 
   const [categoryToggle,setCategoryToggle] = useState(false) // Add Category Toggle in Notes
 
@@ -52,7 +62,8 @@ function App() {
         SavedFunction:{save,setSave},
         StoredPage:{storedPage,setStoredPage},
         AccessSavedNotes:{viewNotes,setViewNotes},
-        AddCategoryToggle:{categoryToggle,setCategoryToggle}}}>
+        AddCategoryToggle:{categoryToggle,setCategoryToggle},
+        CurrentEditableNotes:{currentNotes,setCurrentNotes}}}>
           
         {/* Add Category */}
         {categoryToggle&&<NewCategoryDialogBox/>}

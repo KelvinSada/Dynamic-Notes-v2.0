@@ -12,7 +12,20 @@ export type NotesType = {
   total:number,
   date:string,
   time:string,
-  dynamicItems:[]
+  dynamicItems:NotesCategory[]
+}
+
+// Current Notes Category
+export type NotesCategory ={
+  categoryName:string,
+  categoryBody:string,
+  categoryTotal:number,
+}
+
+// Current Notes global state
+export type GlobalCurrentNotes = {
+  currentNotes: NotesType,
+  setCurrentNotes: React.Dispatch<React.SetStateAction<NotesType>>
 }
 
 // Pages Toggle

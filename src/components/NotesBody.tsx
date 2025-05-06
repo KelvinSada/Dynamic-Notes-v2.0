@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { useState,useRef } from "react"
 import { AppContext } from "./Context"
-import { NoteArrayType, NotesType } from "./Types"
+import { NoteArrayType } from "./Types"
 import NotesTopBar from "./NotesTopBar"
 
 
@@ -9,17 +9,9 @@ const NotesBody = () => {
     const {DeleteFunction:{remove,setRemove},
     SavedFunction:{save,setSave},
     NoteArray:{savedArray,setSavedArray},
-    AccessSavedNotes:{viewNotes,setViewNotes}} = useContext(AppContext)
+    AccessSavedNotes:{viewNotes,setViewNotes},
+    CurrentEditableNotes:{currentNotes,setCurrentNotes}} = useContext(AppContext)
 
-  const [currentNotes,setCurrentNotes] = useState<NotesType>({
-    id:0,
-    title:"",
-    body:"",
-    total:0,
-    date:"",
-    time:"",
-    dynamicItems:[]
-  })
 
 // Handling the Date and Time
 const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]

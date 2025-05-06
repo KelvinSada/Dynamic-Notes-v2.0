@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { AddCategoryToggle, AppSavedType, DeleteType, SavedType,StoredPageToggle, ViewSavedNotes } from "./Types";
+import { AddCategoryToggle, AppSavedType, DeleteType, SavedType,StoredPageToggle, ViewSavedNotes, GlobalCurrentNotes } from "./Types";
 
 type AppContextType = {
   NoteArray:AppSavedType,
@@ -8,6 +8,7 @@ type AppContextType = {
   StoredPage:StoredPageToggle,
   AccessSavedNotes:ViewSavedNotes,
   AddCategoryToggle:AddCategoryToggle,
+  CurrentEditableNotes:GlobalCurrentNotes,
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -37,5 +38,16 @@ export const AppContext = createContext<AppContextType>({
   AddCategoryToggle:{
     categoryToggle:false,
     setCategoryToggle:()=>{},
-  }
+  },
+  CurrentEditableNotes:{
+      currentNotes:{
+        id:0,
+        title:"",
+        body:"",
+        total:0,
+        date:"",
+        time:"",
+        dynamicItems:[]
+      },
+      setCurrentNotes:()=>{}}
 })
