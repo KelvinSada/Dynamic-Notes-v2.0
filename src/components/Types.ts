@@ -13,13 +13,27 @@ export type NotesType = {
   date:string,
   time:string,
   dynamicItems:NotesCategory[]
+  currentNote:NotesCategory
 }
 
 // Current Notes Category
 export type NotesCategory ={
+  categoryId:number
   categoryName:string,
   categoryBody:string,
   categoryTotal:number,
+}
+
+// Selected Notes Category Toggle
+export type SelectedNotesCategory ={
+  notesCategorySelected:{
+    categoryId:number
+    categoryName:string,
+    categoryBody:string,
+    categoryTotal:number,
+  },
+  setNotesCategorySelected:React.Dispatch<React.SetStateAction<NotesCategory>>,
+
 }
 
 // Current Notes global state

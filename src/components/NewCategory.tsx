@@ -8,10 +8,12 @@ const NewCategoryDialogBox = () => {
         CurrentEditableNotes:{currentNotes,setCurrentNotes}} = useContext(AppContext)
 
   const [category,setCategory] = useState<NotesCategory>({
+    categoryId:0,
     categoryName: "",
     categoryBody:"",
     categoryTotal:0,
   })
+
   const categoryNameRef = useRef<HTMLInputElement>(null)
   // const categoryNameRef = useRef<>("")
 
@@ -30,23 +32,44 @@ const NewCategoryDialogBox = () => {
   }
 
   const getCategory=()=>{
-    if (categoryNameRef.current){
-      categoryNameRef.current.focus()
-    }
+    // if (categoryNameRef.current){
+    //   categoryNameRef.current.focus()
+    // }
+
     if (category.categoryName.length !== 0 ){
+
+      if (currentNotes.dynamicItems.length === 0){
+        handleFirstNotes()
+      }
+
       let newObj = category
-      setCurrentNotes(prevItems=>{
+      newObj.categoryId = currentNotes.dynamicItems.length + 1
+     setCurrentNotes(prevItems=>{
         return {
           ...prevItems,
           dynamicItems:[...prevItems.dynamicItems,newObj]
         }
       })
-      console.log(currentNotes)
       setCategoryToggle(false)
     }
   }
-  console.log(currentNotes)
-  
+
+
+  // handling the first save
+  const handleFirstNotes=()=>{
+    setCurrentNotes((prev)=>{
+      return{
+        ...prev,
+        currentNote:{
+          categoryId: 0.1,
+          categoryName: "current1.0",
+          categoryBody: prev.body,
+          categoryTotal: prev.total,
+        }
+      }
+    })
+  }
+
   return (
     <div className="z-10 p-3 shadow-md rounded-[10px] bg-white flex flex-col gap-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <button onClick={hangleCategoryToggle} className='self-end'><IoClose /></button>

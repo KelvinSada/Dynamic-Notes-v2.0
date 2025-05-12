@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { useState,useRef } from "react"
 import { AppContext } from "./Context"
-import { NoteArrayType } from "./Types"
+import { NoteArrayType, NotesCategory } from "./Types"
 import NotesTopBar from "./NotesTopBar"
 
 
@@ -10,7 +10,8 @@ const NotesBody = () => {
     SavedFunction:{save,setSave},
     NoteArray:{savedArray,setSavedArray},
     AccessSavedNotes:{viewNotes,setViewNotes},
-    CurrentEditableNotes:{currentNotes,setCurrentNotes}} = useContext(AppContext)
+    CurrentEditableNotes:{currentNotes,setCurrentNotes},
+    SelectedNotesCategory:{notesCategorySelected}} = useContext(AppContext)
 
 
 // Handling the Date and Time
@@ -82,7 +83,13 @@ const CurrentTime = `${hours}:${minute} ${zone}`
           total:0,
           date:"",
           time:"",
-          dynamicItems:[]
+          dynamicItems:[],
+          currentNote:{
+            categoryId: 0,
+            categoryName: "",
+            categoryBody: "",
+            categoryTotal: 0
+          }
       })
     },100)
     
@@ -109,7 +116,13 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         total:0,
         date:"",
         time:"",
-        dynamicItems:[]
+        dynamicItems:[],
+        currentNote:{
+          categoryId: 0,
+          categoryName: "",
+          categoryBody: "",
+          categoryTotal: 0
+        }
     })
     
 } 
@@ -142,7 +155,13 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         total:total,
         date:CurrentDate,
         time:CurrentTime,
-        dynamicItems:[]
+        dynamicItems:[],
+        currentNote:{
+          categoryId: 0,
+          categoryName: "",
+          categoryBody: "",
+          categoryTotal: 0
+        }
       })
 
       setTimeout(()=>{
@@ -166,7 +185,13 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         total:0,
         date:"",
         time:"",
-        dynamicItems:[]
+        dynamicItems:[],
+        currentNote:{
+          categoryId: 0,
+          categoryName: "",
+          categoryBody: "",
+          categoryTotal: 0
+        }
       })
     } 
   ,[remove])
@@ -179,20 +204,62 @@ const CurrentTime = `${hours}:${minute} ${zone}`
   
   // Making the Dynamic Notes Work
 
+    const NotesCategoryRef = useRef<NotesCategory>({
+      categoryId: 0,
+      categoryName: "",
+      categoryBody: "",
+      categoryTotal: 0,
+    })
+
   const getContent =  (e:React.ChangeEvent<HTMLTextAreaElement>)=>{
     const values = e.target.value
     // setCurrentNotes(NotesRef.current)
-    setCurrentNotes((prev)=>{
-      return {
-        ...prev,
-        time:CurrentTime,
-        date:CurrentDate,
-        body:values,
+   
+      setCurrentNotes((prev)=>{
+        return {
+          ...prev,
+          time:CurrentTime,
+          date:CurrentDate,
+          body:values,
+        }
+      })
+
+      NotesCategoryRef.current = {
+          categoryId: notesCategorySelected.categoryId,
+          categoryName: notesCategorySelected.categoryName,
+          categoryBody: values,
+          categoryTotal: 0,
+        }
+
+      if (notesCategorySelected.categoryId === 0.1){
+        setCurrentNotes(prev=>{
+          return{
+            ...prev,
+            currentNote:{
+              categoryId:prev.currentNote.categoryId,
+              categoryName:prev.currentNote.categoryName,
+              categoryBody:values,
+              categoryTotal:prev.currentNote.categoryTotal,
+            }
+          }
+        })
+       
+      } else if (notesCategorySelected.categoryId > 0.1){
+         setCurrentNotes((prev)=>{
+          currentNotes.dynamicItems.forEach((item)=>{
+            if (item.categoryId === notesCategorySelected.categoryId){
+                item.categoryBody = NotesCategoryRef.current.categoryBody,
+                item.categoryTotal = NotesCategoryRef.current.categoryTotal
+          }
+        })
+        return prev
+      })
       }
-    })
     getNumbers(values)
     setRemove(false)
   }
+
+
   
   const getNumbers = (texts:string)=>{
     
@@ -210,6 +277,30 @@ const CurrentTime = `${hours}:${minute} ${zone}`
           total : totalRef.current
         }
       })
+
+      if (notesCategorySelected.categoryId === 0.1){
+        setCurrentNotes(prev=>{
+          return{
+            ...prev,
+            currentNote:{
+              categoryId:prev.currentNote.categoryId,
+              categoryName:prev.currentNote.categoryName,
+              categoryBody:prev.currentNote.categoryBody,
+              categoryTotal:totalRef.current,
+            }
+          }
+        })
+      } else if (notesCategorySelected.categoryId > 0.1){
+        setCurrentNotes((prev)=>{
+          currentNotes.dynamicItems.forEach((item)=>{
+              if (item.categoryId === notesCategorySelected.categoryId){
+                  item.categoryBody = NotesCategoryRef.current.categoryBody,
+                  item.categoryTotal = totalRef.current
+           }
+        })
+        return prev
+      })
+      }
     } else{
       return null
     }
@@ -273,17 +364,6 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       </div>
     </div>
   
-  {/* <div className="flex gap-4">
-    <div className="bg-amber-50 w-fit">
-      <p>Current Notes</p>
-    </div>
-    <div>
-      <p>Add new section</p>
-    </div>
-    <div>
-      <p>add +</p>
-    </div>
-  </div> */}
   <NotesTopBar/>
 
     <textarea 

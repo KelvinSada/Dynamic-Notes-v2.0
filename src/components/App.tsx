@@ -3,7 +3,7 @@ import './App.css'
 import Header from './Header'
 import Menu from './Menu'
 import NotesBody from './NotesBody'
-import { NoteArrayType, Pages,NotesSelected, NotesType } from './Types'
+import { NoteArrayType, Pages,NotesSelected, NotesType, NotesCategory } from './Types'
 import { AppContext } from './Context'
 import SavedItems from './SavedItems'
 import Settings from './Settings'
@@ -25,10 +25,23 @@ function App() {
     total:0,
     date:"",
     time:"",
-    dynamicItems:[]
+    dynamicItems:[],
+    currentNote:{
+      categoryId: 0,
+      categoryName: '',
+      categoryBody: '',
+      categoryTotal: 0
+    }
   })
 
   const [categoryToggle,setCategoryToggle] = useState(false) // Add Category Toggle in Notes
+  // const [categoryId,setCategoryId]
+  const [notesCategorySelected, setNotesCategorySelected] = useState<NotesCategory>({
+    categoryId: 0,
+    categoryName: "",
+    categoryBody: "",
+    categoryTotal: 0,
+  })
 
   const [viewNotes,setViewNotes] = useState<NotesSelected>({
     notesId:null,
@@ -63,25 +76,12 @@ function App() {
         StoredPage:{storedPage,setStoredPage},
         AccessSavedNotes:{viewNotes,setViewNotes},
         AddCategoryToggle:{categoryToggle,setCategoryToggle},
-        CurrentEditableNotes:{currentNotes,setCurrentNotes}}}>
+        CurrentEditableNotes:{currentNotes,setCurrentNotes},
+        SelectedNotesCategory:{notesCategorySelected,setNotesCategorySelected}}}>
           
-        {/* Add Category */}
+        {/* Add Category Dialog Box */}
         {categoryToggle&&<NewCategoryDialogBox/>}
-
-
         
-        {/* <div className="z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-200 w-80">
-  <input 
-    type="text" 
-    className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-    placeholder="Category name"
-  />
-  <p className="text-gray-600 mb-4">Hello</p>
-  <button className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-    Add Category
-  </button>
-</div> */}
-
       <main className='relative min-h-screen bg-[#f4f4f4]'>
         <Header/>
         {storedPage === "home"?<NotesBody/>:
