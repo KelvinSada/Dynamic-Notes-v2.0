@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { AddCategoryToggle, AppSavedType, DeleteType, SavedType,StoredPageToggle, ViewSavedNotes, GlobalCurrentNotes, NotesCategory, SelectedNotesCategory } from "./Types";
+import { AddCategoryToggle, AppSavedType, DeleteType, SavedType,StoredPageToggle, ViewSavedNotes, GlobalCurrentNotes, SelectedNotesCategory } from "./Types";
 
 type AppContextType = {
   NoteArray:AppSavedType,
@@ -48,7 +48,13 @@ export const AppContext = createContext<AppContextType>({
         total:0,
         date:"",
         time:"",
-        dynamicItems:[]
+        dynamicItems:[],
+        currentNote:{
+          categoryId: 0,
+          categoryName: "",
+          categoryBody: "",
+          categoryTotal: 0,
+        }
       },
       setCurrentNotes:()=>{}},
       SelectedNotesCategory :{
