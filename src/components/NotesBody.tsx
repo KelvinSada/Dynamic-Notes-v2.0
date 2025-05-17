@@ -231,7 +231,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
           categoryTotal: 0,
         }
 
-      if (notesCategorySelected.categoryId === 0.1){
+      if (notesCategorySelected.categoryId === 0){
         setCurrentNotes(prev=>{
           return{
             ...prev,
@@ -278,7 +278,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         }
       })
 
-      if (notesCategorySelected.categoryId === 0.1){
+      if (notesCategorySelected.categoryId === 0){
         setCurrentNotes(prev=>{
           return{
             ...prev,
@@ -345,7 +345,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       type="text" 
       value={currentNotes.title}
       onChange={handleTitle}
-      className="py-3 w-full text-2xl font-medium border-none outline-none placeholder-gray-400 bg-transparent" 
+      className="pb-3 w-full text-2xl font-medium border-none outline-none placeholder-gray-400 bg-transparent" 
       placeholder="Note Title" 
       name="title"
    />

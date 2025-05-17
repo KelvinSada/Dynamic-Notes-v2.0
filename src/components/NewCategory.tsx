@@ -61,7 +61,7 @@ const NewCategoryDialogBox = () => {
       return{
         ...prev,
         currentNote:{
-          categoryId: 0.1,
+          categoryId: 0,
           categoryName: "current1.0",
           categoryBody: prev.body,
           categoryTotal: prev.total,

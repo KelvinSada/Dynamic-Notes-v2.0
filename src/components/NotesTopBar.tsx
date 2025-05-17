@@ -22,6 +22,14 @@ const NotesTopBar = () => {
    
     const findItem = currentNotes.dynamicItems.find(item => item.categoryId === selectedItem.categoryId)
     if (findItem){
+      setNotesCategorySelected(()=>{
+      return{
+        categoryId: selectedItem.categoryId,
+        categoryName: selectedItem.categoryName,
+        categoryBody: selectedItem.categoryBody,
+        categoryTotal: selectedItem.categoryTotal,
+      }
+      })
       setCurrentNotes(prev=>{
         return{
           ...prev,
