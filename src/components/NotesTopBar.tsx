@@ -5,7 +5,7 @@ import { NotesCategory } from "./Types"
 const NotesTopBar = () => {
   const {AddCategoryToggle:{setCategoryToggle},
       CurrentEditableNotes:{currentNotes,setCurrentNotes},
-      DisplayNotesAndTotal:{displayNotes,setDisplayNotes}
+      DisplayNotesAndTotal:{setDisplayNotes}
     } = useContext(AppContext)
 
   const addNewCategory=()=>{

@@ -1,4 +1,4 @@
-import { useContext, useState,useRef, useEffect } from "react"
+import { useContext, useState,useRef } from "react"
 import { IoClose } from "react-icons/io5"
 import { AppContext } from "./Context"
 import { NotesCategoryMain } from "./Types"
