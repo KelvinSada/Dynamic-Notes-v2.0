@@ -10,16 +10,31 @@ type Values ={
 }
 
 const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
-  const {AccessSavedNotes:{setViewNotes},
+  const { DisplayNotesAndTotal:{setDisplayNotes},
+  CurrentEditableNotes:{setCurrentNotes},
+  SelectCurrentPage:{setCurrentPage},
   NoteArray:{savedArray,setSavedArray}}= useContext(AppContext)
 
-
+// Handle Select Notes from Saved Array to View
   const handleViewNotes = ()=>{
-    setViewNotes({
-        notesId:values.id,
-        notePickedToggle:true,
+    const {body,date,dynamicItems,id,status,time,title,total}= values
+    setCurrentNotes({
+      id:id,
+      body:body,
+      time:time,
+      date:date,
+      dynamicItems:dynamicItems,
+      status:status,
+      title:title,
+      total:total,
     })
+    setDisplayNotes({
+      note:body,
+      total:total,
+    })
+    setCurrentPage("home");
   }
+  
 
   // Clicking the toggle on the menu property
   const isOpen = pickedNote === values.id

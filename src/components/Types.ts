@@ -12,11 +12,29 @@ export type NotesType = {
   total:number,
   date:string,
   time:string,
-  dynamicItems:NotesCategory[]
-  currentNote:NotesCategory
+  dynamicItems:NotesCategoryMain[]
+  status:"active"|"not active"
 }
 
-// Current Notes Category
+// Current Notes Category with Active
+export type NotesCategoryMain = {
+  categoryId:number
+  categoryName:string,
+  categoryBody:string,
+  categoryTotal:number,
+  status:"active" | "not active"
+}
+
+export type DisplayItems = {
+  note:string,
+  total:number,
+}
+
+export type ShowDisplayedItemsType={
+  displayNotes:DisplayItems,
+  setDisplayNotes:React.Dispatch<React.SetStateAction<DisplayItems>>,
+}
+// Notes Category Seperate
 export type NotesCategory ={
   categoryId:number
   categoryName:string,
@@ -46,9 +64,9 @@ export type GlobalCurrentNotes = {
 export type Pages= "home" | "saved" | "settings"
 
 // Go to Stored Value
-export type StoredPageToggle ={
-  storedPage:Pages,
-  setStoredPage:React.Dispatch<React.SetStateAction<Pages>>;
+export type CurrentPageType ={
+  currentPage:Pages,
+  setCurrentPage:React.Dispatch<React.SetStateAction<Pages>>;
 }
 
 // Delete Context used in Context.ts

@@ -3,20 +3,20 @@ import './App.css'
 import Header from './Header'
 import Menu from './Menu'
 import NotesBody from './NotesBody'
-import { NoteArrayType, Pages,NotesSelected, NotesType, NotesCategory } from './Types'
+import { NoteArrayType, Pages,NotesSelected, NotesType,DisplayItems } from './Types'
 import { AppContext } from './Context'
 import SavedItems from './SavedItems'
 import Settings from './Settings'
 import NewCategoryDialogBox from './NewCategory'
-
+  // export getNotes=()=>{}
 
 function App() {
 
   const [savedArray,setSavedArray] = useState<NoteArrayType[]>([])
 
   const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
-  const [save,setSave] = useState(false)      // Save the Current Notes and Clear the Page Empty
-  const [storedPage,setStoredPage] = useState<Pages>("home")   // Go to the Storage Page
+  // const [save,setSave] = useState(false)      // Save the Current Notes and Clear the Page Empty
+  const [currentPage,setCurrentPage] = useState<Pages>("home")   // Go to the Storage Page
 
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
     id:0,
@@ -26,21 +26,24 @@ function App() {
     date:"",
     time:"",
     dynamicItems:[],
-    currentNote:{
-      categoryId: 0,
-      categoryName: '',
-      categoryBody: '',
-      categoryTotal: 0
-    }
+    status:"active",
   })
 
+  const [tests,setTests] = useState<{
+    name:string,
+    class:string
+  }>({
+    name:"",
+    class:""
+  })
+
+console.log(tests)
   const [categoryToggle,setCategoryToggle] = useState(false) // Add Category Toggle in Notes
   // const [categoryId,setCategoryId]
-  const [notesCategorySelected, setNotesCategorySelected] = useState<NotesCategory>({
-    categoryId: 0,
-    categoryName: "",
-    categoryBody: "",
-    categoryTotal: 0,
+
+    const [displayNotes,setDisplayNotes] = useState<DisplayItems>({
+    note:"",
+    total:0,
   })
 
   const [viewNotes,setViewNotes] = useState<NotesSelected>({
@@ -49,9 +52,9 @@ function App() {
   })   // Click a Notes from the saved Notes Menu to view in the Main Notes Page
 
   useEffect(()=>{
-      setStoredPage("home")
-    
+      setCurrentPage("home")
   },[viewNotes.notePickedToggle])
+
 
   // Save the Array to Local Storage
 
@@ -65,27 +68,51 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("Notes_Array",JSON.stringify(savedArray))
   },[savedArray])
+
+  // Save Display Notes to Local Storage
+  // useEffect(()=>{
+  //   const data = localStorage.getItem("Displayed_Items")
+  //   // console.log(data)
+  //   if (data){
+  //      const response = JSON.parse(data)
+  //     setDisplayNotes(response)
+  //   }
+  // },[])
+
+  // useEffect(()=>{
+  //   localStorage.setItem("Displayed_Items",JSON.stringify(displayNotes))
+  // },[displayNotes])
+
+   // Save Current Notes to Local Storage
+
+  // useEffect(()=>{
+  //   const data = localStorage.getItem("Current-Notes-Saved")
+  //   if (data){
+  //     const resource = JSON.parse(data);
+  //     setCurrentNotes(resource)
+  //   }
+  // },[])
+
+  // useEffect(()=>{
+  //   localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
+  // },[currentNotes])
   
-
-
   return (
     <AppContext.Provider value={{
         NoteArray:{savedArray,setSavedArray},
         DeleteFunction:{remove,setRemove},
-        SavedFunction:{save,setSave},
-        StoredPage:{storedPage,setStoredPage},
+        SelectCurrentPage:{currentPage,setCurrentPage},
         AccessSavedNotes:{viewNotes,setViewNotes},
         AddCategoryToggle:{categoryToggle,setCategoryToggle},
         CurrentEditableNotes:{currentNotes,setCurrentNotes},
-        SelectedNotesCategory:{notesCategorySelected,setNotesCategorySelected}}}>
-          
-        {/* Add Category Dialog Box */}
-        {categoryToggle&&<NewCategoryDialogBox/>}
-        
+        DisplayNotesAndTotal:{displayNotes,setDisplayNotes},
+        Testing:{tests,setTests},
+      }}>
+      {categoryToggle&&<NewCategoryDialogBox/>}
       <main className='relative min-h-screen bg-[#f4f4f4]'>
         <Header/>
-        {storedPage === "home"?<NotesBody/>:
-        storedPage === "saved"?<SavedItems/>:
+        {currentPage === "home"?<NotesBody/>:
+        currentPage === "saved"?<SavedItems/>:
         <Settings/>}
         <div className='fixed bottom-25 sm:bottom-10 w-full'>
           <Menu/>

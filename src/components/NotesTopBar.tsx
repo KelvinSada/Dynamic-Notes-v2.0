@@ -1,67 +1,62 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { AppContext } from "./Context"
 import { NotesCategory } from "./Types"
 
 const NotesTopBar = () => {
   const {AddCategoryToggle:{setCategoryToggle},
       CurrentEditableNotes:{currentNotes,setCurrentNotes},
-      SelectedNotesCategory:{setNotesCategorySelected}} = useContext(AppContext)
-
-  const [pickedCategory,setPickedCategory] = useState<NotesCategory>({
-    categoryId: 0,
-    categoryName: "",
-    categoryBody: "",
-    categoryTotal: 0,
-  })
+      DisplayNotesAndTotal:{displayNotes,setDisplayNotes}
+    } = useContext(AppContext)
 
   const addNewCategory=()=>{
     setCategoryToggle(true)
   }
 
+  // Handle notes catetogry click
   const handleCategoryClick=(selectedItem:NotesCategory)=>{
-   
-    const findItem = currentNotes.dynamicItems.find(item => item.categoryId === selectedItem.categoryId)
-    if (findItem){
-      setNotesCategorySelected(()=>{
-      return{
-        categoryId: selectedItem.categoryId,
-        categoryName: selectedItem.categoryName,
-        categoryBody: selectedItem.categoryBody,
-        categoryTotal: selectedItem.categoryTotal,
-      }
-      })
-      setCurrentNotes(prev=>{
-        return{
-          ...prev,
-          body:selectedItem.categoryBody,
-          total:selectedItem.categoryTotal,
-        }
-      })
-    }
-   
-    setPickedCategory(selectedItem)
-  }
-
-  useEffect(()=>{
-    setNotesCategorySelected(pickedCategory)
-  },[pickedCategory])
-
-
-  // Landing displaying and updating original current Notes
-  const showOriginalNotes =()=>{
-    setNotesCategorySelected(()=>{
-      return{
-        categoryId: currentNotes.currentNote.categoryId,
-        categoryName: currentNotes.currentNote.categoryName,
-        categoryBody: currentNotes.currentNote.categoryBody,
-        categoryTotal: currentNotes.currentNote.categoryTotal,
-      }
-    })
     setCurrentNotes((prev)=>{
       return{
         ...prev,
-        body:prev.currentNote.categoryBody,
-        total:prev.currentNote.categoryTotal,
+        status:"not active",
+        dynamicItems:prev.dynamicItems.map((item)=>{
+          if (item.categoryId === selectedItem.categoryId){
+            item.status = "active"
+            setDisplayNotes(()=>{
+              return{
+                total:item.categoryTotal,
+                note:item.categoryBody,
+              }
+            })
+          } else {
+            item.status = "not active"
+          }
+          return item
+        })
+      }
+    })
+  }
+
+  // Handing displaying and updating original current Notes
+  const showOriginalNotes =()=>{
+    setCurrentNotes((prev)=>{
+      return{
+        ...prev,
+        status:"active",
+        // dynamicItems:prev.dynamicItems.map((item)=>{
+        //   item.status === "not active"
+        //   return item
+        // })
+        dynamicItems:prev.dynamicItems.map((item)=>{
+          item.status = "not active"
+          return item
+        })
+      }
+    })
+
+    setDisplayNotes(()=>{
+      return{
+        total:currentNotes.total,
+        note:currentNotes.body,
       }
     })
   }

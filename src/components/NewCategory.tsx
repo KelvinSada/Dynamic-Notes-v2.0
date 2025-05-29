@@ -1,17 +1,18 @@
-import { useContext, useState,useRef } from "react"
+import { useContext, useState,useRef, useEffect } from "react"
 import { IoClose } from "react-icons/io5"
 import { AppContext } from "./Context"
-import { NotesCategory } from "./Types"
+import { NotesCategoryMain } from "./Types"
 
 const NewCategoryDialogBox = () => {
   const {AddCategoryToggle:{setCategoryToggle},
         CurrentEditableNotes:{currentNotes,setCurrentNotes}} = useContext(AppContext)
 
-  const [category,setCategory] = useState<NotesCategory>({
+  const [category,setCategory] = useState<NotesCategoryMain>({
     categoryId:0,
     categoryName: "",
     categoryBody:"",
     categoryTotal:0,
+    status:"not active",
   })
 
   const categoryNameRef = useRef<HTMLInputElement>(null)
@@ -65,6 +66,7 @@ const NewCategoryDialogBox = () => {
           categoryName: "current1.0",
           categoryBody: prev.body,
           categoryTotal: prev.total,
+          status:"not active",
         }
       }
     })
