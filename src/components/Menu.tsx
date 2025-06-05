@@ -45,6 +45,10 @@ const Menu = () => {
         })
       }
     })
+    setDisplayNotes({
+      note:currentNotes.body,
+      total:currentNotes.total
+    })
    }
   }
 

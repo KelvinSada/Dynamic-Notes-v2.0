@@ -94,7 +94,7 @@ function App() {
 
   useEffect(()=>{
     localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
-  },[currentNotes])
+  },[currentNotes,currentNotes.dynamicItems])
   
   return (
     <AppContext.Provider value={{

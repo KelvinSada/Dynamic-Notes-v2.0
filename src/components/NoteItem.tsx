@@ -11,38 +11,45 @@ type Values ={
 
 const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
   const { DisplayNotesAndTotal:{setDisplayNotes},
-  CurrentEditableNotes:{setCurrentNotes},
+  CurrentEditableNotes:{currentNotes,setCurrentNotes},
   SelectCurrentPage:{setCurrentPage},
   NoteArray:{savedArray,setSavedArray}}= useContext(AppContext)
 
 // Handle Select Notes from Saved Array to View
   const handleViewNotes = ()=>{
-    const {body,date,dynamicItems,id,status,time,title,total}= values
-    setCurrentNotes({
-      id:id,
-      body:body,
-      time:time,
-      date:date,
-      dynamicItems:dynamicItems,
-      status:status,
-      title:title,
-      total:total,
-    })
- 
-    if (values.status === "active"){
-      setDisplayNotes({
-        note:body,
-        total:total,
+
+    // Handling any existing current notes
+     if (currentNotes.body.length > 0 && currentNotes.id === 0){
+      const currentNotesDuplicate = {...currentNotes}
+      currentNotesDuplicate.id = savedArray.length + 1
+      setSavedArray(prev=>{
+        return[currentNotesDuplicate,...prev]
       })
-    } else{
-      const findItem = values.dynamicItems.find(item=>item.status === "active")
-      if (findItem){
-        setDisplayNotes({
-          note:findItem.categoryBody,
-          total:findItem.categoryTotal
+      
+      } else if ( currentNotes.body.length > 0 && currentNotes.id > 0) {
+        const savedArrayDuplicate = [...savedArray]
+  
+       // Removing Array with asimilar ID as the current Array
+       const filteredArray = savedArrayDuplicate.filter(item=>{
+        return item.id !== currentNotes.id
+      })
+      
+        setSavedArray(()=>{
+          return [currentNotes,...filteredArray]
         })
       }
-    }
+
+      // Handling getting Data from saved Value
+      const findItem = savedArray.find(item=>item.id === values.id)
+
+      if (findItem){
+        setCurrentNotes(findItem)
+        setDisplayNotes({
+          note:findItem.body,
+          total:findItem.total
+        })
+      }
+  
     setCurrentPage("home");
   }
   
@@ -54,7 +61,7 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
    setpickedNote(isOpen?null:id)
   }
  
-
+console.log(currentNotes)
   // Handle deletion of Notes
 
   const handleDeleteNote=()=>{
