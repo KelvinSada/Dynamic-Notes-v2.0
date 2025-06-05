@@ -7,7 +7,7 @@ import { AppContext } from "./Context";
 
 
 const Menu = () => {
-      const {DeleteFunction:{setRemove},
+      const {
       // SavedFunction:{setSave},
       SelectCurrentPage:{currentPage,setCurrentPage},
       CurrentEditableNotes:{currentNotes,setCurrentNotes},
