@@ -28,10 +28,21 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
       title:title,
       total:total,
     })
-    setDisplayNotes({
-      note:body,
-      total:total,
-    })
+ 
+    if (values.status === "active"){
+      setDisplayNotes({
+        note:body,
+        total:total,
+      })
+    } else{
+      const findItem = values.dynamicItems.find(item=>item.status === "active")
+      if (findItem){
+        setDisplayNotes({
+          note:findItem.categoryBody,
+          total:findItem.categoryTotal
+        })
+      }
+    }
     setCurrentPage("home");
   }
   

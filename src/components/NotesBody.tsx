@@ -242,20 +242,6 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       }
     })
   }
- 
-   // Save Current Notes to Local Storage
-
-  // useEffect(()=>{
-  //   const data = localStorage.getItem("Current-Notes-Saved")
-  //   if (data){
-  //     const resource = JSON.parse(data);
-  //     setCurrentNotes(resource)
-  //   }
-  // },[])
-
-  // useEffect(()=>{
-  //   localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
-  // },[currentNotes])
 
   return (
   <div className="flex flex-col w-full md:w-[70%] mx-auto px-4 py-6">

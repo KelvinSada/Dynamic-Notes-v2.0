@@ -37,7 +37,6 @@ function App() {
     class:""
   })
 
-console.log(tests)
   const [categoryToggle,setCategoryToggle] = useState(false) // Add Category Toggle in Notes
   // const [categoryId,setCategoryId]
 
@@ -70,32 +69,32 @@ console.log(tests)
   },[savedArray])
 
   // Save Display Notes to Local Storage
-  // useEffect(()=>{
-  //   const data = localStorage.getItem("Displayed_Items")
-  //   // console.log(data)
-  //   if (data){
-  //      const response = JSON.parse(data)
-  //     setDisplayNotes(response)
-  //   }
-  // },[])
+  useEffect(()=>{
+    const data = localStorage.getItem("Displayed_Items")
+    // console.log(data)
+    if (data){
+       const response = JSON.parse(data)
+      setDisplayNotes(response)
+    }
+  },[])
 
-  // useEffect(()=>{
-  //   localStorage.setItem("Displayed_Items",JSON.stringify(displayNotes))
-  // },[displayNotes])
+  useEffect(()=>{
+    localStorage.setItem("Displayed_Items",JSON.stringify(displayNotes))
+  },[displayNotes])
 
-   // Save Current Notes to Local Storage
+  //  Save Current Notes to Local Storage
 
-  // useEffect(()=>{
-  //   const data = localStorage.getItem("Current-Notes-Saved")
-  //   if (data){
-  //     const resource = JSON.parse(data);
-  //     setCurrentNotes(resource)
-  //   }
-  // },[])
+  useEffect(()=>{
+    const data = localStorage.getItem("Current-Notes-Saved")
+    if (data){
+      const resource = JSON.parse(data);
+      setCurrentNotes(resource)
+    }
+  },[])
 
-  // useEffect(()=>{
-  //   localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
-  // },[currentNotes])
+  useEffect(()=>{
+    localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
+  },[currentNotes])
   
   return (
     <AppContext.Provider value={{
@@ -108,16 +107,14 @@ console.log(tests)
         DisplayNotesAndTotal:{displayNotes,setDisplayNotes},
         Testing:{tests,setTests},
       }}>
-      {categoryToggle&&<NewCategoryDialogBox/>}
-      <main className='relative min-h-screen bg-[#f4f4f4]'>
-        <Header/>
-        {currentPage === "home"?<NotesBody/>:
-        currentPage === "saved"?<SavedItems/>:
-        <Settings/>}
-        <div className='fixed bottom-25 sm:bottom-10 w-full'>
+        <main className='relative flex flex-col min-h-screen bg-[#f4f4f4]'>
+          {categoryToggle&&<NewCategoryDialogBox/>}
+          <Header/>
+          {currentPage === "home"?<NotesBody/>:
+          currentPage === "saved"?<SavedItems/>:
+          <Settings/>}
           <Menu/>
-        </div>
-      </main>
+        </main>
     </AppContext.Provider>
   )
 }
