@@ -13,7 +13,7 @@ const SavedItems = () => {
   // }
   return (
     <div className=" w-[92%] mx-auto">
-      <h1>Saved Items</h1>
+      <h1 className="text-3xl px-3 py-3 text-gray-700 ">Saved Items</h1>
 
       <div className="grid grid-col-1 sm:grid-cols-2 gap-2 ">
         {savedArray.map((items)=>{

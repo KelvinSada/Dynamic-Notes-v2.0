@@ -37,9 +37,11 @@ const Menu = () => {
       total:0,
     })
    } else {
+    console.log("active")
     setCurrentNotes((prev)=>{
       return{
         ...prev,
+        status:"active",
         dynamicItems:prev.dynamicItems.filter((item)=>{
           return item.status !== "active"
         })
