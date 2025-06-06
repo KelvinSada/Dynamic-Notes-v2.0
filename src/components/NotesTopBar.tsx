@@ -66,7 +66,7 @@ const NotesTopBar = () => {
     <div className="bg-cyan-50  px-4 py-2 rounded-md border border-cyan-100">
       <p onClick={showOriginalNotes} className="font-medium text-cyan-800">Current</p>
     </div>
-    <div className="flex w-full overflow-scroll">
+    <div className="flex items-center w-full overflow-x-scroll">
       {currentNotes.dynamicItems.map((category,index)=>{
         return(
           <p onClick={()=>{handleCategoryClick(category)}} key={index} className="text-gray-500 flex items-center rounded-[10px] mr-2 p-2 justify-center border-1 bg-gray-100 min-w-[70%]">
