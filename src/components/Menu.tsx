@@ -143,36 +143,41 @@ const handleSave=()=>{
     //   </ul>
     // </div>
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-sm">
-  <ul className="flex justify-around items-center py-3 max-w-md mx-auto">
-    <li 
-      onClick={goToSavedPage} 
-      className="p-3 text-gray-500 hover:text-blue-500 transition-colors cursor-pointer rounded-full hover:bg-blue-50"
-      title="Saved Items"
-    >
-      <FaTableList className="text-2xl" />
-    </li>
-    <li 
-      onClick={handleSave} 
-      className="p-3 text-gray-500 hover:text-green-500 transition-colors cursor-pointer rounded-full hover:bg-green-50"
-      title="Add Item"
-    >
-      <IoIosAddCircle className="text-2xl" />
-    </li>
-    <li 
-      onClick={handleDelete} 
-      className="p-3 text-gray-500 hover:text-red-500 transition-colors cursor-pointer rounded-full hover:bg-red-50"
-      title="Delete"
-    >
-      <MdDelete className="text-2xl" />
-    </li>
-    <li 
-      onClick={goToSettingsPage} 
-      className="p-3 text-gray-500 hover:text-purple-500 transition-colors cursor-pointer rounded-full hover:bg-purple-50"
-      title="Settings"
-    >
-      <IoMdSettings className="text-2xl" />
-    </li>
-  </ul>
+    <ul className="flex justify-around items-center py-3 max-w-md mx-auto">
+      <li 
+        onClick={goToSavedPage} 
+        className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors cursor-pointer rounded-full hover:bg-blue-50"
+        title="Saved Items"
+      >
+        <FaTableList className="text-2xl" />
+        <p>Saved Items</p>
+      </li>
+      <li 
+        onClick={handleSave} 
+        className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-green-500 transition-colors cursor-pointer rounded-full hover:bg-green-50"
+        title="Add Item"
+      >
+        <IoIosAddCircle className="text-2xl" />
+        <p>Refresh</p>
+      </li>
+      <li 
+        onClick={handleDelete} 
+        className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-red-500 transition-colors cursor-pointer rounded-full hover:bg-red-50"
+        title="Delete"
+      >
+        <MdDelete className="text-2xl" />
+        <p>Delete</p>
+
+      </li>
+      <li 
+        onClick={goToSettingsPage} 
+        className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-purple-500 transition-colors cursor-pointer rounded-full hover:bg-purple-50"
+        title="Settings"
+      >
+        <IoMdSettings className="text-2xl" />
+        <p>Settings</p>
+      </li>
+    </ul>
 </div>
   )
 }
