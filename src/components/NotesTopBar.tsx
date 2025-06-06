@@ -63,8 +63,8 @@ const NotesTopBar = () => {
 
   return (
   <div className="flex justify-between items-center gap-4 p-4 bg-white rounded-lg shadow-sm">
-    <div className="bg-amber-50  px-4 py-2 rounded-md border border-amber-100">
-      <p onClick={showOriginalNotes} className="font-medium text-amber-800">Current</p>
+    <div className="bg-cyan-50  px-4 py-2 rounded-md border border-cyan-100">
+      <p onClick={showOriginalNotes} className="font-medium text-cyan-800">Current</p>
     </div>
     <div className="flex w-full overflow-scroll">
       {currentNotes.dynamicItems.map((category,index)=>{
@@ -75,7 +75,7 @@ const NotesTopBar = () => {
         )
       })}
     </div>
-    <button onClick={addNewCategory} className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-md flex items-center gap-1 transition-colors">
+    <button onClick={addNewCategory} className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-md flex items-center gap-1 transition-colors">
       <span>Add</span>
       <span className="text-lg">+</span>
     </button>

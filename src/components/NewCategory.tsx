@@ -73,10 +73,10 @@ const NewCategoryDialogBox = () => {
   }
 
   return (
-    <div className="z-10 p-3 shadow-md rounded-[10px] bg-white flex flex-col gap-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      <button onClick={hangleCategoryToggle} className='self-end'><IoClose /></button>
-      <input ref={categoryNameRef} onChange={handleCategoryChange} placeholder='Category name' type="text" className='p-1 border border-black'/>
-      <button onClick={getCategory} className='w-full rounded-md bg-fuchsia-400 hover:bg-fuchsia-500'>Add Category</button>
+    <div className="z-10 p-6 shadow-md rounded-[15px] bg-white flex flex-col gap-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <button onClick={hangleCategoryToggle} className='self-end text-3xl'><IoClose /></button>
+      <input ref={categoryNameRef} onChange={handleCategoryChange} placeholder='Category name' type="text" className='p-2 roundd rounded-2xl text-[1.2rem] placeholder:px-0.5 border border-black'/>
+      <button onClick={getCategory} className='w-full rounded-2xl bg-cyan-300 px-3 py-2 hover:bg-fuchsia-500'>Add Category</button>
     </div>
   )
 }

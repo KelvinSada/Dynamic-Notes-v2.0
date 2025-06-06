@@ -244,7 +244,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
   }
 
   return (
-  <div className="flex flex-col w-full md:w-[70%] mx-auto px-4 py-6">
+  <div className="flex flex-col w-full md:w-[70%] mx-auto px-4 pt-6 pb-15">
     <input 
       type="text" 
       value={currentNotes.title}
