@@ -232,7 +232,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       value={displayNotes.note} 
       onChange={getContent} 
       name="body" 
-      placeholder="Calculate as you type. No extra steps. ⚡" 
+      placeholder="Calculate as you type. No extra steps.⚡" 
       id="dynamic-note"
     ></textarea>
   </div>
