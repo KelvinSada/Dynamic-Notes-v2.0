@@ -108,7 +108,7 @@ function App() {
           {categoryToggle&&<NewCategoryDialogBox/>}
           <Header/>
           {currentPage === "home"?<NotesBody/>:
-          currentPage === "saved"?<SavedItems/>:
+          currentPage === "saved" ?<SavedItems/>:
           <Settings/>}
           <Menu/>
         </main>
