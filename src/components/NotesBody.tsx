@@ -268,7 +268,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       </div>
     </div>
   
-  <NotesTopBar/>
+  {/* <NotesTopBar/> */}
 
     <textarea 
       className="mt-4 p-4 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
