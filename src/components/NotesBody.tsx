@@ -11,7 +11,7 @@ const NotesBody = () => {
     DisplayNotesAndTotal:{displayNotes,setDisplayNotes}
   } = useContext(AppContext)
 
-const [showCategory,setShowCategory] = useState<boolean>(true)
+const [showCategory,setShowCategory] = useState<boolean>(false)
 
 // Handling the Date and Time
 const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
