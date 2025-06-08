@@ -200,7 +200,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       value={currentNotes.title}
       onChange={handleTitle}
       className="pb-3 w-full text-2xl font-medium border-none outline-none placeholder-gray-400 bg-transparent" 
-      placeholder="Note Title" 
+      placeholder="Title" 
       name="title"
    />
 
