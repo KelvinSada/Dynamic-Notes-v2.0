@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { useRef } from "react"
 import { AppContext } from "./Context"
-// import NotesTopBar from "./NotesTopBar"
+import NotesTopBar from "./NotesTopBar"
 
 
 const NotesBody = () => {
@@ -200,11 +200,9 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         </p>
       </div>
     </div>
-  
-  {/* <NotesTopBar/> */}
-
+  <NotesTopBar/>
     <textarea 
-      className="mt-4 p-4 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
+      className="mt-4 px-4 pt-4 pb-10 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
                 outline-none w-full border border-gray-200 focus:border-blue-300 
                 resize-none min-h-[60vh] leading-relaxed"
       value={displayNotes.note} 
