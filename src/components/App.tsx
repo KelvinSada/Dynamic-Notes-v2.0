@@ -104,7 +104,7 @@ function App() {
         DisplayNotesAndTotal:{displayNotes,setDisplayNotes},
         Testing:{tests,setTests},
       }}>
-        <main className='relative flex flex-col min-h-screen bg-[#f4f4f4]'>
+        <main className=' relative flex flex-col min-h-screen bg-[#f4f4f4]'>
           {categoryToggle&&<NewCategoryDialogBox/>}
           <Header/>
           {currentPage === "home"?<NotesBody/>:

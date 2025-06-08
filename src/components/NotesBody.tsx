@@ -192,8 +192,9 @@ const CurrentTime = `${hours}:${minute} ${zone}`
   useEffect(()=>{
     localStorage.setItem("show-Category",JSON.stringify(showCategory))
   },[showCategory])
+
   return (
-  <div className="flex flex-col w-full md:w-[70%] mx-auto px-4 pt-6 pb-15">
+  <div className="flex bg-neutral-800 flex-col w-full md:w-[70%] mx-auto px-4 pt-6 pb-15">
     <input 
       type="text" 
       value={currentNotes.title}
@@ -223,8 +224,9 @@ const CurrentTime = `${hours}:${minute} ${zone}`
     </button>
   </div>
   {showCategory=== true?<NotesTopBar/>:null}
+
     <textarea 
-      className="mt-4 px-4 pt-4 pb-10 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
+      className="mt-4 bg-neutral-300 px-4 pt-4 pb-10 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
                 outline-none w-full border border-gray-200 focus:border-blue-300 
                 resize-none min-h-[60vh] leading-relaxed"
       value={displayNotes.note} 

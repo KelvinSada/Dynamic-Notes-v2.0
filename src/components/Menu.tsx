@@ -126,24 +126,8 @@ const handleSave=()=>{
   }
 
   return (
-    // <div className="fixed bottom-0 w-full py-4 bg-white border-t border-gray-300 shadow-md">
-    //   <ul className="flex justify-center gap-5 text-3xl w-full">
-    //     <li onClick={goToSavedPage} className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
-    //       <FaTableList />
-    //     </li>
-    //     <li onClick={handleSave} className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
-    //       <IoIosAddCircle />
-    //     </li>
-    //     <li onClick={handleDelete} className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
-    //       <MdDelete />
-    //     </li>
-    //     <li onClick={goToSettingsPage} className="px-4 py-2 text-gray-600 hover:bg-blue-100 transition-colors cursor-pointer">
-    //       <IoMdSettings />
-    //     </li>
-    //   </ul>
-    // </div>
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-sm">
-    <ul className="flex justify-around items-center py-3 max-w-md mx-auto">
+    <div className=" fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-sm">
+    <ul className=" bg-neutral-300 flex justify-around items-center py-3 max-w-md mx-auto">
       <li 
         onClick={goToSavedPage} 
         className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors cursor-pointer rounded-full hover:bg-blue-50"
