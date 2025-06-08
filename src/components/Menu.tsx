@@ -130,7 +130,7 @@ const handleSave=()=>{
     <ul className=" flex justify-around items-center py-3 max-w-md mx-auto">
       <li 
         onClick={goToSavedPage} 
-        className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors cursor-pointer rounded-full hover:bg-blue-50"
+        className={`p-3 flex flex-col items-center gap-2  ${currentPage === "saved"?"text-cyan-600":"text-gray-500"} transition-colors cursor-pointer rounded-full hover:bg-blue-50`}
         title="Saved Items"
       >
         <FaTableList className="text-2xl" />
@@ -138,7 +138,7 @@ const handleSave=()=>{
       </li>
       <li 
         onClick={handleSave} 
-        className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-green-500 transition-colors cursor-pointer rounded-full hover:bg-green-50"
+        className={`p-3 flex flex-col items-center gap-2  ${currentPage === "home"?"text-cyan-600":"text-gray-500"} transition-colors cursor-pointer rounded-full hover:bg-green-50`}
         title="Add Item"
       >
         <IoIosAddCircle className="text-2xl" />
@@ -146,7 +146,7 @@ const handleSave=()=>{
       </li>
       <li 
         onClick={handleDelete} 
-        className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-red-500 transition-colors cursor-pointer rounded-full hover:bg-red-50"
+        className={`p-3 flex flex-col items-center gap-2 text-gray-500 transition-colors cursor-pointer rounded-full hover:bg-red-50`}
         title="Delete"
       >
         <MdDelete className="text-2xl" />
@@ -155,7 +155,7 @@ const handleSave=()=>{
       </li>
       <li 
         onClick={goToSettingsPage} 
-        className="p-3 flex flex-col items-center gap-2 text-gray-500 hover:text-purple-500 transition-colors cursor-pointer rounded-full hover:bg-purple-50"
+        className={`p-3 flex flex-col items-center gap-2  ${currentPage === "settings"?"text-cyan-600":"text-gray-500"} transition-colors cursor-pointer rounded-full hover:bg-purple-50`}
         title="Settings"
       >
         <IoMdSettings className="text-2xl" />
