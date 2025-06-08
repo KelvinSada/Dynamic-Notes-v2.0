@@ -217,7 +217,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         </p>
       </div>
     </div>
-  <div onClick={categoryTogggle} className="text-cyan-800 border-cyan-200 flex my-1 justify-between items-center bg-cyan-50  px-4 py-2 rounded-md border border-cyan-100">
+  <div onClick={categoryTogggle} className="text-cyan-800 border-cyan-200 flex my-1 justify-between items-center bg-cyan-50  px-4 py-2 rounded-md border">
     <p>{!showCategory?"Add new Category":"Collapse categories"}</p>
     <button >
       {showCategory?<FaAngleUp />:<FaAngleDown />}
@@ -232,7 +232,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       value={displayNotes.note} 
       onChange={getContent} 
       name="body" 
-      placeholder="Calculate without leaving your notes! 📝 = 💡" 
+      placeholder="Calculate as you type. No extra steps. ⚡" 
       id="dynamic-note"
     ></textarea>
   </div>
