@@ -1,15 +1,11 @@
 import React, { useContext } from "react"
 import { useRef } from "react"
 import { AppContext } from "./Context"
-// import {  NoteArrayType, NotesType} from "./Types"
-import NotesTopBar from "./NotesTopBar"
+// import NotesTopBar from "./NotesTopBar"
 
 
 const NotesBody = () => {
     const {DeleteFunction:{setRemove},
-    // NoteArray:{savedArray,setSavedArray},
-    // GetItemFunction:{getNotes},
-    // AccessSavedNotes:{viewNotes,setViewNotes},
     CurrentEditableNotes:{currentNotes,setCurrentNotes},
     DisplayNotesAndTotal:{displayNotes,setDisplayNotes}
   } = useContext(AppContext)
@@ -54,69 +50,6 @@ if (getHour < 12){
 }
 const CurrentDate = `${getDay} ${Month[getMonth]}`
 const CurrentTime = `${hours}:${minute} ${zone}`
-
-
-// Acessing NotesData from a stored Notes Page into the Current Notes
-
-// const [access,setAccess] = useState(false)
-// useEffect(()=>{
-  //   // console.log(`${viewNotes} just rendered`)
-  
-  //   if (viewNotes && viewNotes.notePickedToggle === true){
-    //     savedArray.forEach(getItem)
-    //   }
-    // },[viewNotes.notePickedToggle,access])
-    
-  // const getItem =(item:NoteArrayType)=>{
-    //   const arrayId = item.id
-
-    //   if (arrayId === viewNotes.notesId){
-      //     setAccess(true)                // To make this rerender and update
-      //     const {body,title,total,id} = item
-      
-      //     setCurrentNotes({
-        //       id:id,
-        //       title:title,
-        //       body:body,
-        //       total:total,
-  //       date:CurrentDate,
-  //       time:CurrentTime,
-  //       dynamicItems:[],
-  //       status:"not active",
-  //     })
-
-  //     setTimeout(()=>{
-  //       setViewNotes(prev=>{
-  //         return{
-  //           ...prev,
-  //           notePickedToggle:false,
-  //         }
-  //       })
-  //     },100)
-  //   }
-  // }
-
-  // Clearing Data with the Delete Menu Toggle
-  
-  // useEffect(()=>{
-  //     setCurrentNotes({
-  //       id:0,
-  //       title:"",
-  //       body:"",
-  //       total:0,
-  //       date:"",
-  //       time:"",
-  //       dynamicItems:[],
-  //       status:"active"
-  //     })
-      
-  //     setDisplayNotes({
-  //       note:"",
-  //       total:0,
-  //     })
-  //   } 
-
-  // ,[remove])
   
   const totalRef = useRef<number>(0)
   

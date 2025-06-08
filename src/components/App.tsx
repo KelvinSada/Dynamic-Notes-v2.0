@@ -8,14 +8,12 @@ import { AppContext } from './Context'
 import SavedItems from './SavedItems'
 import Settings from './Settings'
 import NewCategoryDialogBox from './NewCategory'
-  // export getNotes=()=>{}
 
 function App() {
 
   const [savedArray,setSavedArray] = useState<NoteArrayType[]>([])
 
   const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
-  // const [save,setSave] = useState(false)      // Save the Current Notes and Clear the Page Empty
   const [currentPage,setCurrentPage] = useState<Pages>("home")   // Go to the Storage Page
 
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
@@ -38,7 +36,6 @@ function App() {
   })
 
   const [categoryToggle,setCategoryToggle] = useState(false) // Add Category Toggle in Notes
-  // const [categoryId,setCategoryId]
 
     const [displayNotes,setDisplayNotes] = useState<DisplayItems>({
     note:"",
