@@ -7,7 +7,7 @@ import { AppContext } from "./Context";
 
 
 const Menu = () => {
-      const {
+    const {
       // SavedFunction:{setSave},
       SelectCurrentPage:{currentPage,setCurrentPage},
       CurrentEditableNotes:{currentNotes,setCurrentNotes},
@@ -37,7 +37,6 @@ const Menu = () => {
       total:0,
     })
    } else {
-    console.log("active")
     setCurrentNotes((prev)=>{
       return{
         ...prev,
@@ -59,7 +58,6 @@ const Menu = () => {
 const handleSave=()=>{
  if (currentPage === "home"){
    if (currentNotes.body.length > 0 && currentNotes.id === 0){
-
       const currentNotesDuplicate = {...currentNotes}
       currentNotesDuplicate.id = savedArray.length + 1
       setSavedArray(prev=>{

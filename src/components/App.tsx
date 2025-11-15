@@ -12,7 +12,7 @@ import NewCategoryDialogBox from './NewCategory'
 function App() {
 
   const [savedArray,setSavedArray] = useState<NoteArrayType[]>([])
-
+  console.log(savedArray)
   const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
   const [currentPage,setCurrentPage] = useState<Pages>("home")   // Go to the Storage Page
 
@@ -26,7 +26,6 @@ function App() {
     dynamicItems:[],
     status:"active",
   })
-
   const [tests,setTests] = useState<{
     name:string,
     class:string
@@ -117,16 +116,3 @@ function App() {
 }
 
 export default App
-
-
-// Make the footer fixed to the bottom of the page
-
-// .footer{
-//   position:fixed;
-//   width:100%;
-//   padding:2em 0;
-//   background-color: red;
-//   /* top:95vh; */
-//   bottom:.00001vh;
-//   /* display: none; */
-// }

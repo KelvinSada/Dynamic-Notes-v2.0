@@ -188,7 +188,7 @@ const CurrentTime = `${hours}:${minute} ${zone}`
       setShowCategory(JSON.parse(data))
     }
   },[])
-
+  // console.log(currentNotes)
   useEffect(()=>{
     localStorage.setItem("show-Category",JSON.stringify(showCategory))
   },[showCategory])
