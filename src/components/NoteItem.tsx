@@ -20,7 +20,6 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
 
     // Handling any existing current notes
      if (currentNotes.body.length > 0 && currentNotes.id === 0){
-      console.log("working")
       const currentNotesDuplicate = {...currentNotes}
       currentNotesDuplicate.id = savedArray.length + 1
       setSavedArray(prev=>{
@@ -65,6 +64,7 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
   // Handle deletion of Notes
 
   const handleDeleteNote=()=>{
+    console.log(values.id)
     const updatedArray:NoteArrayType[] = []
     savedArray.filter(item=>{
       if (item.id !== values.id){
@@ -79,12 +79,18 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
     })
 
     // Nymbering the remaining items correctly in the array 
-    const newCorrectNumberingArray = updatedArrayWithoutId.map((item,index)=>{
+    const newCorrectNumberingArray = updatedArrayWithoutId.reverse().map((item,index)=>{
       return { id: index + 1,...item }
     })
 
-    // console.log(newCorrectNumberingArray)
-    setSavedArray(newCorrectNumberingArray)
+    // Change the order of the array
+    const orderedArray = newCorrectNumberingArray.sort((a,b)=> b.id - a.id)
+    
+    // change the order of the objects in the array
+    setSavedArray(orderedArray)
+    
+    
+    // setSavedArray(updatedArray)
   }
 
   // Limit the no of words to be shown for the body

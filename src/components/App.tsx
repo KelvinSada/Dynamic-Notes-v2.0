@@ -12,10 +12,9 @@ import NewCategoryDialogBox from './NewCategory'
 function App() {
 
   const [savedArray,setSavedArray] = useState<NoteArrayType[]>([])
-  console.log(savedArray)
   const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
   const [currentPage,setCurrentPage] = useState<Pages>("home")   // Go to the Storage Page
-
+  console.log(savedArray)
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
     id:0,
     title:"",
