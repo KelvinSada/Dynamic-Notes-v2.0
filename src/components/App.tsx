@@ -14,7 +14,6 @@ function App() {
   const [savedArray,setSavedArray] = useState<NoteArrayType[]>([])
   const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
   const [currentPage,setCurrentPage] = useState<Pages>("home")   // Go to the Storage Page
-  console.log(savedArray)
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
     id:0,
     title:"",

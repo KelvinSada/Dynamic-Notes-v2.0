@@ -15,6 +15,7 @@ const SavedItems = () => {
       <div className="pb-40 grid grid-col-1 sm:grid-cols-2 gap-2 ">
         {savedArray.map((items)=>{
           // console.log(savedArray)
+          console.log(items)
           return(
             <NoteItem pickedNote={pickedNote} setpickedNote={setPickedNote} key={items.id} values={items}/>
           )

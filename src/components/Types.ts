@@ -102,3 +102,23 @@ export type AddCategoryToggle={
   categoryToggle:boolean,
   setCategoryToggle:React.Dispatch<React.SetStateAction<boolean>>,
 }
+
+export type AppContextType = {
+  NoteArray:AppSavedType,
+  DeleteFunction:DeleteType,
+  SelectCurrentPage:CurrentPageType,
+  AccessSavedNotes:ViewSavedNotes,
+  AddCategoryToggle:AddCategoryToggle,
+  CurrentEditableNotes:GlobalCurrentNotes,
+  DisplayNotesAndTotal:ShowDisplayedItemsType,
+  Testing:{
+    tests:{
+      name:string,
+      class:string,
+    },
+    setTests: React.Dispatch<React.SetStateAction<{
+    name: string;
+    class: string;
+}>>
+  }
+}

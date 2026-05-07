@@ -64,12 +64,12 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
   // Handle deletion of Notes
 
   const handleDeleteNote=()=>{
-    console.log(values.id)
     const updatedArray:NoteArrayType[] = []
     savedArray.filter(item=>{
       if (item.id !== values.id){
         updatedArray.push(item)
-      }
+        values.id 
+      } 
     })
 
     // Removing the id property in the new updated array
@@ -90,7 +90,6 @@ const NoteItem = ({values,pickedNote,setpickedNote}:Values) => {
     setSavedArray(orderedArray)
     
     
-    // setSavedArray(updatedArray)
   }
 
   // Limit the no of words to be shown for the body
