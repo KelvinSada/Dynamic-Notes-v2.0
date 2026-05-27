@@ -201,9 +201,9 @@ const CurrentTime = `${hours}:${minute} ${zone}`
     </div>
   <Category/>
     <textarea 
-      className="mt-4 px-4 pt-4 pb-10 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
+      className={`mt-4 px-4 pt-4 pb-10 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
                 outline-none w-full border border-gray-200 focus:border-blue-300 
-                resize-none min-h-[60vh] leading-relaxed animate-pulse"
+                resize-none min-h-[60vh] leading-relaxed ${displayNotes.note?"":"animate-pulse"}`}
       value={displayNotes.note} 
       onChange={getContent} 
       name="body" 
