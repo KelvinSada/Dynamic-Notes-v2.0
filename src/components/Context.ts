@@ -2,7 +2,6 @@ import { createContext } from "react";
 import { AppContextType } from "./Types";
 
 
-
 export const AppContext = createContext<AppContextType>({
   NoteArray:{
     savedArray: [],
@@ -45,12 +44,5 @@ export const AppContext = createContext<AppContextType>({
       total:0,
     },
     setDisplayNotes:()=>{},
-  },
-  Testing:{
-    tests:{
-      name:"",
-      class:""
-    },
-    setTests:()=>{}
   }
 })

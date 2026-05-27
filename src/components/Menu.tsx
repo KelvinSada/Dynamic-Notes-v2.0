@@ -13,10 +13,8 @@ const Menu = () => {
       CurrentEditableNotes:{currentNotes,setCurrentNotes},
       NoteArray:{savedArray,setSavedArray},
       DisplayNotesAndTotal:{setDisplayNotes},
-      Testing:{setTests}
-
     } = useContext(AppContext)
-  
+
   const goToSavedPage =()=>{
     if (currentPage !== "saved"){
       setCurrentPage("saved")
@@ -116,10 +114,6 @@ const handleSave=()=>{
 
     if (currentPage !== "settings"){
       setCurrentPage("settings")
-      setTests({
-        name:"Novoh",
-        class:"Done"
-      })
     }
   }
 

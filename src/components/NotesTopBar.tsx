@@ -1,8 +1,12 @@
-import { useContext } from "react"
-import { AppContext } from "./Context"
-import { NotesCategory } from "./Types"
+import { useContext} from "react";
+import { AppContext } from "./Context";
+import { NotesCategory } from "./Types";
+// import { motion, AnimatePresence } from "motion/react"
 
-const NotesTopBar = () => {
+type CategoryClick = {
+  toggleCategory:boolean
+}
+const NotesTopBar = (Category:CategoryClick) => {
   const {AddCategoryToggle:{setCategoryToggle},
       CurrentEditableNotes:{currentNotes,setCurrentNotes},
       DisplayNotesAndTotal:{setDisplayNotes}
@@ -11,6 +15,8 @@ const NotesTopBar = () => {
   const addNewCategory=()=>{
     setCategoryToggle(true)
   }
+  console.log(Category.toggleCategory)
+  
 
   // Handle notes catetogry click
   const handleCategoryClick=(selectedItem:NotesCategory)=>{
@@ -62,7 +68,7 @@ const NotesTopBar = () => {
   }
 
   return (
-  <div className="flex justify-between items-center gap-4 p-4 bg-white rounded-lg shadow-sm">
+  <div className={`flex justify-between items-center gap-4 p-4 bg-white rounded-lg ${Category} shadow-sm`}>
     <div className="bg-cyan-50  px-4 py-2 rounded-md border border-cyan-100">
       <p onClick={showOriginalNotes} className="font-medium text-cyan-800">Current</p>
     </div>
@@ -84,3 +90,4 @@ const NotesTopBar = () => {
 }
 
 export default NotesTopBar
+

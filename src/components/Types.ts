@@ -111,14 +111,4 @@ export type AppContextType = {
   AddCategoryToggle:AddCategoryToggle,
   CurrentEditableNotes:GlobalCurrentNotes,
   DisplayNotesAndTotal:ShowDisplayedItemsType,
-  Testing:{
-    tests:{
-      name:string,
-      class:string,
-    },
-    setTests: React.Dispatch<React.SetStateAction<{
-    name: string;
-    class: string;
-}>>
-  }
 }

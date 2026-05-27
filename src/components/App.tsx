@@ -10,10 +10,9 @@ import Settings from './Settings'
 import NewCategoryDialogBox from './NewCategory'
 
 function App() {
-
   const [savedArray,setSavedArray] = useState<NoteArrayType[]>([])
   const [remove,setRemove] = useState(false)   // Delete a Notes from the Main current Notes Page
-  const [currentPage,setCurrentPage] = useState<Pages>("home")   // Go to the Storage Page
+  const [currentPage,setCurrentPage] = useState<Pages>("home")   // Navigate through the pages
   const [currentNotes,setCurrentNotes] = useState<NotesType>({
     id:0,
     title:"",
@@ -23,13 +22,6 @@ function App() {
     time:"",
     dynamicItems:[],
     status:"active",
-  })
-  const [tests,setTests] = useState<{
-    name:string,
-    class:string
-  }>({
-    name:"",
-    class:""
   })
 
   const [categoryToggle,setCategoryToggle] = useState(false) // Add Category Toggle in Notes
@@ -90,6 +82,8 @@ function App() {
     localStorage.setItem("Current-Notes-Saved",JSON.stringify(currentNotes))
   },[currentNotes,currentNotes.dynamicItems])
   
+
+
   return (
     <AppContext.Provider value={{
         NoteArray:{savedArray,setSavedArray},
@@ -98,8 +92,7 @@ function App() {
         AccessSavedNotes:{viewNotes,setViewNotes},
         AddCategoryToggle:{categoryToggle,setCategoryToggle},
         CurrentEditableNotes:{currentNotes,setCurrentNotes},
-        DisplayNotesAndTotal:{displayNotes,setDisplayNotes},
-        Testing:{tests,setTests},
+        DisplayNotesAndTotal:{displayNotes,setDisplayNotes}
       }}>
         <main className=' relative flex flex-col min-h-screen bg-[#f4f4f4]'>
           {categoryToggle&&<NewCategoryDialogBox/>}

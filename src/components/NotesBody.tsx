@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext } from "react"
 import { useRef } from "react"
 import { AppContext } from "./Context"
-import NotesTopBar from "./NotesTopBar"
-import { FaAngleDown } from "react-icons/fa";
-import { FaAngleUp } from "react-icons/fa"
+import Category from "./Category"
 
 const NotesBody = () => {
     const {DeleteFunction:{setRemove},
@@ -11,7 +9,6 @@ const NotesBody = () => {
     DisplayNotesAndTotal:{displayNotes,setDisplayNotes}
   } = useContext(AppContext)
 
-const [showCategory,setShowCategory] = useState<boolean>(false)
 
 // Handling the Date and Time
 const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
@@ -178,21 +175,6 @@ const CurrentTime = `${hours}:${minute} ${zone}`
     })
   }
 
-  const categoryTogggle =()=>{
-    setShowCategory(prev=>!prev)
-  }
-
-  useEffect(()=>{
-    const data = localStorage.getItem("show-Category")
-    if (data){
-      setShowCategory(JSON.parse(data))
-    }
-  },[])
-  // console.log(currentNotes)
-  useEffect(()=>{
-    localStorage.setItem("show-Category",JSON.stringify(showCategory))
-  },[showCategory])
-
   return (
   <div className="flex flex-col w-full md:w-[70%] mx-auto px-4 pt-6 pb-15">
     <input 
@@ -217,18 +199,11 @@ const CurrentTime = `${hours}:${minute} ${zone}`
         </p>
       </div>
     </div>
-  <div onClick={categoryTogggle} className="text-cyan-800 border-cyan-200 flex my-1 justify-between items-center bg-cyan-50  px-4 py-2 rounded-md border">
-    <p>{!showCategory?"Add new Category":"Collapse categories"}</p>
-    <button >
-      {showCategory?<FaAngleUp />:<FaAngleDown />}
-    </button>
-  </div>
-  {showCategory=== true?<NotesTopBar/>:null}
-
+  <Category/>
     <textarea 
       className="mt-4 px-4 pt-4 pb-10 text-lg text-gray-700 placeholder-gray-400 bg-gray-50 rounded-lg 
                 outline-none w-full border border-gray-200 focus:border-blue-300 
-                resize-none min-h-[60vh] leading-relaxed"
+                resize-none min-h-[60vh] leading-relaxed animate-pulse"
       value={displayNotes.note} 
       onChange={getContent} 
       name="body" 
